@@ -1,16 +1,10 @@
 <template>
     <div class="home-page" >
-        <header>
-            <img src="/static/imgData/logo.png" alt="">
-        </header>
-        <v-nav></v-nav>
+        <v-slider></v-slider>
     </div>
 </template>
 <script>
-import header from './homeContent/header'
-import nav from './homeContent/nav'
-import content from './homeContent/content'
-import BScroll from 'better-scroll'
+import slider from './homeCont/slider'
 export default {
     data() {
         return {
@@ -18,9 +12,7 @@ export default {
         }
     },
     components: {
-        'v-header': header,
-        'v-nav': nav,
-        'v-content': content
+        'v-slider': slider
     }
 }
 </script>

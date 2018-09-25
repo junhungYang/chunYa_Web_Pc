@@ -4,8 +4,9 @@ import homePage from "@/components/homePage"
 import goodsList from '@/components/goodsList'
 import companyNews from "@/components/companyNews"
 import memberCenter from "@/components/memberCenter"
-import others from "@/components/others"
+import serviceCenter from "@/components/serviceCenter"
 import shoppingCenter from '@/components/shoppingCenter'
+import advertises from "@/components/advertises";
 
 Vue.use(Router)
 
@@ -36,8 +37,12 @@ export default new Router({
       component: shoppingCenter
     },
     {
-      path: "/others",
-      component: others
+      path: "/serviceCenter",
+      component: serviceCenter
+    },
+    {
+      path: "/advertises",
+      component: advertises
     }
   ]
 });

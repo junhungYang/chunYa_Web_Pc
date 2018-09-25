@@ -1,16 +1,16 @@
 @font-face {
-  font-family: hansans-bold;
+  font-family: hansansBold;
   src: url('../fonts/SourceHanSansCN-Bold.otf')
 }
 @font-face {
-  font-family: hansans-Med;
+  font-family: hansansMed;
   src: url('../fonts/SourceHanSansCN-Medium.otf')
 }
 @font-face {
-  font-family: hansans-Reg;
+  font-family: hansansReg;
   src: url('../fonts/SourceHanSansCN-Regular.otf')
 }
 @font-face {
-  font-family: hansans-Nor;
+  font-family: hansansNor;
   src: url('../fonts/SourceHanSansCN-Normal.otf')
 }
