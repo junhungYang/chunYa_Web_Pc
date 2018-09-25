@@ -1,10 +1,12 @@
 <template>
     <div class="home-page" >
         <v-slider></v-slider>
+        <v-content></v-content>
     </div>
 </template>
 <script>
 import slider from './homeCont/slider'
+import content from './homeCont/content'
 export default {
     data() {
         return {
@@ -12,7 +14,8 @@ export default {
         }
     },
     components: {
-        'v-slider': slider
+        'v-slider': slider,
+        'v-content': content
     }
 }
 </script>
