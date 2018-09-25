@@ -1,8 +1,8 @@
 <template>
-    <div class="content">
+    <div class="content" ref="content">
         <header></header>
         <div class="desc1">
-            <div class="bg"></div>
+            <div class="bg" :style="{'width':desc1BgWidth,'margin-left': desc1BgMarginLeft}"></div>
             <div class="img-text">
                 <div class="up">
                     <div class="left-pic"></div>
@@ -35,7 +35,18 @@
 </template>
 <script>
 export default {
-    
+    data() {
+        return {
+            desc1BgWidth: '1200px',
+            desc1BgMarginLeft:'0px'
+        }
+    },
+    created() {
+        
+    },
+    mounted() {
+        this.desc1BgWidth = (this.$refs.content.offsetWidth - 1200)/2 + 1200 + 'px'
+    },
 }
 </script>
 
@@ -52,13 +63,11 @@ export default {
         width: 1200px;
         margin: 0 auto;
         .bg {
-            position: absolute;
-            left: 0;
-            top:0;
-            padding-left: 19%;
-            width: 100%;
             height: 300px;
             background:#ebedee;
+            position: absolute;
+            left:0;
+            top: 0;
         }
         .img-text {
             position: absolute;
@@ -113,7 +122,10 @@ export default {
                             color:#e1e1e1;
                         }
                     }
-                    
+                    .learnMore {
+                        // margin-top: 44px;
+
+                    }
                 }
             }
             .right-pic {
