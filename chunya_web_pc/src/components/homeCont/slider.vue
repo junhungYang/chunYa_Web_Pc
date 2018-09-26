@@ -5,26 +5,39 @@
             <p>始于自然，缘于发生</p>
             <p>Come from the nature, Change from the unknown</p>
         </div>
-        <div class="wrap">
-
-        </div>
-        <div class="control">
-            <img src="../../assets/img/leftClick.png" alt="">
-            <img src="../../assets/img/rightClick.png" alt="">
+        <div class="slider-wrap">
+            <slider :loop="loop" :autoPlay="autoPlay">
+                    <div class="slider-item">
+                        <img class="slider-pic" src="../../assets/img/poster1.jpg" alt="">
+                    </div>
+                    <div class="slider-item">
+                        <img class="slider-pic" src="../../assets/img/poster2.jpg" alt="">
+                    </div>
+                    <div class="pic-wrap">
+                        <img class="slider-pic" src="../../assets/img/poster1.jpg" alt="">
+                    </div>
+                    <div class="pic-wrap">
+                        <img class="slider-pic" src="../../assets/img/poster2.jpg" alt="">
+                    </div>
+            </slider>
         </div>
     </div>
 </template>
 <script>
-
+import slider from './sliderSub/slider'
 export default {
     data() {
         return {
-  
+            loop:true,
+            autoPlay:true
         }
     },
     mounted() {
 
     },
+    components: {
+        slider
+    }
 }
 </script>
 <style lang="less" scoped>
@@ -32,10 +45,20 @@ export default {
     height: 700px;
     background:#ddd;
     position: relative;
-    .wrap {
+    .slider-wrap {
         width: 100%;
         overflow: hidden;
         height: 700px;
+            .slider-item {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                display: inline-block;
+                img {
+                    height: 100%;
+                }
+            }
+        
     }
     .desc {
         position: absolute;
