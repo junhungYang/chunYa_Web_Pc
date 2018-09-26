@@ -5,18 +5,21 @@
       </header>
       <v-nav></v-nav>
     <router-view/>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
 import {commonArticleBrand} from './sendRequest/sendRequest'
 import nav from './components/nav'
+import footer from './components/footer'
 
 export default {
   created() {
   },
   components: {
-    'v-nav': nav
+    'v-nav': nav,
+    'v-footer': footer
   }
 }
 </script>

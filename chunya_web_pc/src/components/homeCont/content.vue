@@ -147,7 +147,7 @@ export default {
             right: 0;
             bottom: 42px;
             font-size: 12px;
-            color: #8d8d8d;
+            color: rgba(141,141,141,0.8);
             font-family: hansansNor;
         }
     }
@@ -252,7 +252,7 @@ export default {
             .more {
                 height:187px;
                 font-size: 12px;
-                color: #8d8d8d;
+                color: rgba(141,141,141,0.8);
                 font-family: hansansNor;
                 text-align: right;
             }
@@ -369,7 +369,7 @@ export default {
             right: 0;
             top: 0;
             font-size: 12px;
-            color: #8d8d8d;
+            color: rgba(141,141,141,0.8);
             font-family: hansansNor;
         }
         .left-box {
