@@ -1,11 +1,10 @@
 <template>
-    <div class="company-news">
-        公司简介
+    <div class="news">
+        新闻资讯
     </div>
 </template>
 <style lang="less" scoped>
-.company-news {
+.news {
     height: 200px;
 }
 </style>
-

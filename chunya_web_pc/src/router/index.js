@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import homePage from "@/components/homePage"
-import goodsList from '@/components/goodsList'
+import news from '@/components/news'
 import companyNews from "@/components/companyNews"
 import memberCenter from "@/components/memberCenter"
 import serviceCenter from "@/components/serviceCenter"
@@ -21,8 +21,8 @@ export default new Router({
       component: homePage
     },
     {
-      path: "/goodsList",
-      component: goodsList
+      path: "/news",
+      component: news
     },
     {
       path: "/companyNews",

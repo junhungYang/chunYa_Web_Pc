@@ -5,36 +5,46 @@
             <ul>
                 <li>
                     <router-link tag="span" to="/">首页</router-link>
-                    <div class="active"></div>
+                    <div v-show="navActive === '#/'" class="active"></div>
                 </li>
                 <li>
                     <router-link tag="span" to="/companyNews">公司简介</router-link>
-                    <div class="active"></div>
+                    <div v-show="navActive === '#/companyNews'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/goodsList">新闻资讯</router-link>
-                    <div class="active"></div>
+                    <router-link tag="span" to="/news">新闻资讯</router-link>
+                    <div v-show="navActive === '#/news'" class="active"></div>
                 </li>
                 <li>
                     <router-link tag="span" to="/memberCenter">会员中心</router-link>
-                    <div class="active"></div>
+                    <div v-show="navActive === '#/memberCenter'" class="active"></div>
                 </li>
                 <li>
                     <router-link tag="span" to="/shoppingCenter">在线商城</router-link>
-                    <div class="active"></div>
+                    <div v-show="navActive === '#/shoppingCenter'" class="active"></div>
                 </li>
                 <li>
                     <router-link tag="span" to="/serviceCenter">服务中心</router-link>
-                    <div class="active"></div>
+                    <div v-show="navActive === '#/serviceCenter'" class="active"></div>
                 </li>
                 <li>
                     <router-link tag="span" to="/advertises">企业招聘</router-link>
-                    <div class="active"></div>
+                    <div v-show="navActive === '#/advertises'" class="active"></div>
                 </li>
             </ul>
         </div>
     </div>
 </template>
+<script>
+import { mapState } from 'vuex'
+export default {
+    computed: {
+        ...mapState(['navActive'])
+    }
+
+}
+</script>
+
 <style lang="less" scoped>
 .nav {
     height: 70px;
@@ -55,6 +65,7 @@
                 line-height: 67px;
                 display: inline-block;
                 margin: 0 28px;
+                cursor: pointer;
                 span {
                     font-size: 15px;
                     font-family: hansansMed;

@@ -15,13 +15,22 @@
 import {commonArticleBrand} from './sendRequest/sendRequest'
 import nav from './components/nav'
 import footer from './components/footer'
-
+import {mapMutations} from 'vuex'
 export default {
   created() {
   },
   components: {
     'v-nav': nav,
     'v-footer': footer
+  },
+  methods: {
+    ...mapMutations(['navActiveRefresh']),
+    fetchData () {
+      this.navActiveRefresh(location.hash)
+    }
+  },
+  watch: {
+    '$route':'fetchData'
   }
 }
 </script>

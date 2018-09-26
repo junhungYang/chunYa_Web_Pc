@@ -33,14 +33,13 @@ export default {
         },
         interval: {
             type: Number,
-            default: 4000
+            default: 3000
         }
     },
     data() {
         return {
             dots: [],
             currentPageIndex: 0,
-            allWidth:''
         }
     },
     mounted() {
@@ -75,19 +74,18 @@ export default {
         clickPrev() {
             clearTimeout(this.timer)
             this.timer = setTimeout(() => {
-                this.slider.x === -(this.$refs.slider.offsetWidth) ? '' : this.slider.prev()
+                this.slider.prev()
             }, 800);
         },
         clickNext() {
             clearTimeout(this.timer)
             this.timer = setTimeout(() => {
-                this.slider.x === -this.factWidth ? '' : this.slider.next()
+                this.slider.next()
             }, 800);
         },
         _setSliderWidth(isResize) {
             // 获取sliderGroup的子元素
             this.children = this.$refs.sliderGroup.children;
-            console.log(this.$refs.sliderGroup)
             //获取容器长度
             let sliderWidth = this.$refs.slider.clientWidth
             // 遍历sliderGrop的每一个子元素获取总长度
@@ -122,8 +120,6 @@ export default {
                 },
                 click: true
             })
-            this.factWidth = this.slider.scrollerWidth - this.slider.wrapperWidth*2
-            console.log(this.factWidth)
             this.slider.on('scrollEnd', () => {
                 //getCurrentPage可获得当前页的索引，该索引值用于对下标小圆点进行active样式的变换
                 let pageIndex = this.slider.getCurrentPage().pageX

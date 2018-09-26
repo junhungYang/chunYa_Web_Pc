@@ -4,9 +4,11 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-
+        navActive: '#/'
     },
     mutations: {
-    
+        navActiveRefresh(state,payload) {
+            state.navActive = payload
+        }
     }
 });
