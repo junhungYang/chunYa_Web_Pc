@@ -1,11 +1,13 @@
 <template>
   <div id="app">
+    <div class="wrap">
       <header>
           <img src="/static/imgData/logo.png" alt="">
       </header>
       <v-nav></v-nav>
-    <router-view/>
-    <v-footer></v-footer>
+      <router-view/>
+      <v-footer></v-footer>
+    </div>
   </div>
 </template>
 
@@ -26,6 +28,8 @@ export default {
 
 <style lang="less" scoped>
 #app {
+  max-width: 1920px;
+  min-width: 1200px;
   header {
         height: 100px;
         background:#fff;
@@ -37,6 +41,12 @@ export default {
           transform: translate(-50%,-50%)
       }
     }
+}
+@media screen and (min-width: 1920px){
+  .wrap {
+    width: 1920px;
+    margin: 0 auto;
+  }
 }
 </style>
 
