@@ -1,6 +1,8 @@
 <template>
     <div class="content" ref="content">
-        <header></header>
+        <header>
+            <span class="more">——&nbsp;&nbsp;&nbsp; more&nbsp;&nbsp; ></span>
+        </header>
         <div class="desc1">
             <div class="bg" :style="{'width':desc1BgWidth}"></div>
             <div class="img-text">
@@ -41,9 +43,7 @@
         </div>
         <div class="desc2">
             <div class="content">
-                <div class="more">
-                    —— more >
-                </div>
+                <div class="more">——&nbsp;&nbsp;&nbsp; more&nbsp;&nbsp; ></div>
                 <div class="up">
                     <div class="plus">
                         <img src="../../assets/img/add.png" alt="">
@@ -89,6 +89,31 @@
         <div class="poster">
             <img src="../../assets/img/present.jpg" alt="">
         </div>
+        <div class="desc3">
+            <div class="background"></div>
+            <p class="more">——&nbsp;&nbsp;&nbsp; more&nbsp;&nbsp; ></p>
+            <div class="left-box">
+                <img src="../../assets/img/heart.jpg" alt="">
+            </div>
+            <div class="right-box">
+                <div class="text">
+                    <p class="title">含情脉脉，卷一帘鸳梦于阑珊</p>
+                    <p class="desc">玫瑰虽好，几天就谢，把爱用在她最需要的时候岂不更好？</p>
+                    <p class="cont">落为女身，每月都有一次例假，在最难受的日子，若有心上人赠送的卫生巾，万般忧愁，转眼风吹云散。</p>
+                    <div class="Eng">
+                        <p>A female body, having a monthly period,</p>
+                        <p>On the hardest days,</p>
+                        <p>If you have the sanitary napkin given by your sweetheart,</p>
+                        <p>The wind blows away the clouds in a twinkling of an eye.</p>
+                    </div>
+                    <img class="add" src="../../assets/img/add.png">
+                </div>
+                <div class="img-knowMore">
+                    <img src="../../assets/img/book.jpg" alt="">
+                    <img src="../../assets/img/knowMore.png" alt="">
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -116,7 +141,15 @@ export default {
         width: 1200px;
         margin: 0 auto;
         height: 160px;
-        border: 1px solid red;
+        position: relative;
+        .more {
+            position: absolute;
+            right: 0;
+            bottom: 42px;
+            font-size: 12px;
+            color: #8d8d8d;
+            font-family: hansansNor;
+        }
     }
     .desc1 {
         position: relative;
@@ -222,7 +255,6 @@ export default {
                 color: #8d8d8d;
                 font-family: hansansNor;
                 text-align: right;
-                position: relative;
             }
             .up {
                 margin-left:170px;
@@ -318,7 +350,95 @@ export default {
             width: 100%;
         }
     }
-
+    .desc3 {
+        width: 1200px;
+        margin: 0 auto;
+        margin-top: 165px;
+        margin-bottom: 200px;
+        position: relative;
+        overflow: hidden;
+        height: 735px;
+        .background {
+            width: 100%;
+            height: 520px;
+            background:#ebedee;
+            margin-top: 70px;
+        }
+        .more {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 12px;
+            color: #8d8d8d;
+            font-family: hansansNor;
+        }
+        .left-box {
+            width: 490px;
+            position: absolute;
+            left:0;
+            top: 0;
+        }
+        .right-box {
+            width: 710px;
+            margin-left: 490px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            .text {
+                padding-top:160px;
+                position: relative;
+                .title,.desc,.cont,.Eng {
+                    margin-left: 277px;
+                }
+                .title {
+                    font-size: 20px;
+                    font-family: hansansBold;
+                    color:#3e3a39;
+                    line-height: 22px;
+                }
+                .desc {
+                    margin-top: 10px;
+                    font-family: hansansMed;
+                    color: #8c8c8c;
+                    font-size: 14px;
+                    line-height: 18px;
+                }
+                .cont {
+                    margin-top: 45px;
+                    width: 303px;
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-family: hansansNor;
+                    color: #8d8d8d;
+                }
+                .Eng {
+                    margin-top: 50px;
+                    p {
+                        width: 660px;
+                        font-size: 20px;
+                        line-height: 15px;
+                        transform: scale(0.5);
+                        transform-origin: top left;
+                        color: #e1e1e1;
+                    }
+                }
+                img {
+                    position: absolute;
+                    left: 215px;
+                    top: 162px;
+                }
+            }
+            .img-knowMore {
+                margin-top:75px;
+                position: relative;
+                img:nth-of-type(2) {
+                    position: absolute;
+                    left: 400px;
+                    top: 163px;
+                }
+            }
+        }
+    }
 }
 </style>
 
