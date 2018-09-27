@@ -28,7 +28,7 @@
                     <div v-show="navActive === '#/about'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/contact">联系我们</router-link>
+                    <router-link tag="span" to="/contact">企业招聘</router-link>
                     <div v-show="navActive === '#/contact'" class="active"></div>
                 </li>
             </ul>

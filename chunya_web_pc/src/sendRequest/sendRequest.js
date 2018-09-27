@@ -20,7 +20,7 @@ function commonArticle (dataObj) {
 
 //产品预览 / 产品预览
 function previewGoodsList() {
-    axios.post("/api/official/previewGoodsList",qs.stringify({
+    return axios.post("/api/official/previewGoodsList",qs.stringify({
         id: 3
     }));
 }
@@ -52,5 +52,6 @@ function newsDetail() {
 
 export {
     spreadList,
-    commonArticle
+    commonArticle,
+    previewGoodsList
 }
