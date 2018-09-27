@@ -16,7 +16,7 @@
                     </div>
                     <div class="Copyright">
                         <p>Copyright © 2018 All Rights Reserved / 版权所有：深圳市春芽健康科技有限公司</p>
-                        <p>ICP备案：陕ICP备16011233号</p>
+                        <p>ICP备案：粤ICP备18113252号-1</p>
                     </div>
                 </div>
                 <div class="share">
