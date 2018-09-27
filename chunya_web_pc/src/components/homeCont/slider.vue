@@ -47,6 +47,8 @@ export default {
     height: 700px;
     background:#ddd;
     position: relative;
+    max-height: 1920px;
+    overflow: hidden;
     .slider-wrap {
         width: 100%;
         overflow: hidden;
