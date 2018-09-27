@@ -8,28 +8,28 @@
                     <div v-show="navActive === '#/'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/companyNews">公司简介</router-link>
+                    <router-link tag="span" to="/companyNews">公司动态</router-link>
                     <div v-show="navActive === '#/companyNews'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/news">新闻资讯</router-link>
-                    <div v-show="navActive === '#/news'" class="active"></div>
+                    <router-link tag="span" to="/goodsList">产品预览</router-link>
+                    <div v-show="navActive === '#/goodsList'" class="active"></div>
                 </li>
-                <li>
+                <!-- <li>
                     <router-link tag="span" to="/memberCenter">会员中心</router-link>
                     <div v-show="navActive === '#/memberCenter'" class="active"></div>
-                </li>
+                </li> -->
                 <li>
                     <router-link tag="span" to="/shoppingCenter">在线商城</router-link>
                     <div v-show="navActive === '#/shoppingCenter'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/serviceCenter">服务中心</router-link>
-                    <div v-show="navActive === '#/serviceCenter'" class="active"></div>
+                    <router-link tag="span" to="/about">关于我们</router-link>
+                    <div v-show="navActive === '#/about'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/advertises">企业招聘</router-link>
-                    <div v-show="navActive === '#/advertises'" class="active"></div>
+                    <router-link tag="span" to="/contact">联系我们</router-link>
+                    <div v-show="navActive === '#/contact'" class="active"></div>
                 </li>
             </ul>
         </div>
@@ -69,6 +69,7 @@ export default {
                 span {
                     font-size: 15px;
                     font-family: hansansMed;
+                    font-weight: bold;
                     color:#353535;
                 }
                 .active {

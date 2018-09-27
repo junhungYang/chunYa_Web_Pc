@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import homePage from "@/components/homePage"
-import news from '@/components/news'
+import goodsList from '@/components/goodsList'
 import companyNews from "@/components/companyNews"
-import memberCenter from "@/components/memberCenter"
-import serviceCenter from "@/components/serviceCenter"
+// import memberCenter from "@/components/memberCenter"
+import about from "@/components/about"
 import shoppingCenter from '@/components/shoppingCenter'
-import advertises from "@/components/advertises";
+import contact from "@/components/contact";
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    //main
     {
       path: "/",
       component: homePage
@@ -21,28 +22,28 @@ export default new Router({
       component: homePage
     },
     {
-      path: "/news",
-      component: news
+      path: "/goodsList",
+      component: goodsList
     },
     {
       path: "/companyNews",
       component: companyNews
     },
-    {
-      path: "/memberCenter",
-      component: memberCenter
-    },
+    // {
+    //   path: "/memberCenter",
+    //   component: memberCenter
+    // },
     {
       path: "/shoppingCenter",
       component: shoppingCenter
     },
     {
-      path: "/serviceCenter",
-      component: serviceCenter
+      path: "/about",
+      component: about
     },
     {
-      path: "/advertises",
-      component: advertises
+      path: "/contact",
+      component: contact
     }
   ]
 });

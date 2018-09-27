@@ -52,6 +52,5 @@ function newsDetail() {
 
 export {
     spreadList,
-    commonArticleCompany,
-    commonArticleBrand
+    commonArticle
 }
