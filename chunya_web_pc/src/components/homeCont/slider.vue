@@ -5,19 +5,10 @@
             <p>始于自然，缘于发生</p>
             <p>Come from the nature, Change from the unknown</p>
         </div>
-        <div class="slider-wrap">
-            <slider :loop="loop" :autoPlay="autoPlay">
-                    <div class="slider-item">
-                        <img class="slider-pic" src="../../assets/img/poster1.jpg" alt="">
-                    </div>
-                    <div class="slider-item">
-                        <img class="slider-pic" src="../../assets/img/poster2.jpg" alt="">
-                    </div>
-                    <div class="pic-wrap">
-                        <img class="slider-pic" src="../../assets/img/poster1.jpg" alt="">
-                    </div>
-                    <div class="pic-wrap">
-                        <img class="slider-pic" src="../../assets/img/poster2.jpg" alt="">
+        <div class="slider-wrap" v-if="dataGetSuccess">
+            <slider :loop="loop" :autoPlay="autoPlay" v-if="dataGetSuccess">
+                    <div class="slider-item" v-for=" item in posterList" :key="item.id">
+                        <img class="slider-pic" :src="item.image_url" alt="">
                     </div>
             </slider>
         </div>
@@ -25,15 +16,26 @@
 </template>
 <script>
 import slider from './sliderSub/slider'
+import {spreadList} from '../../sendRequest/sendRequest'
 export default {
     data() {
         return {
             loop:true,
-            autoPlay:true
+            autoPlay:true,
+            dataGetSuccess:false,
+            posterList:[]
         }
     },
-    mounted() {
-
+    created() {
+        spreadList().then( res => {
+            let data = res.data
+           if(data.errno === 0) {
+              this.posterList = data.data.adList
+              this.dataGetSuccess = true
+           }else {
+               alert(data.msg)
+           }
+        })
     },
     components: {
         slider
