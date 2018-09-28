@@ -20,7 +20,8 @@
                     <div v-show="navActive === '#/memberCenter'" class="active"></div>
                 </li> -->
                 <li @click="shoppingCenter">
-                    <router-link :class="navActive === '#/shoppingCenter' ? 'routeAct' : ''" tag="span" to="/shoppingCenter">在线商城</router-link>
+                    <!-- <router-link :class="navActive === '#/shoppingCenter' ? 'routeAct' : ''" tag="span" to="/shoppingCenter">在线商城</router-link> -->
+                    <span>在线商城</span>
                     <div v-show="navActive === '#/shoppingCenter'" class="active"></div>
                 </li>
                 <li>
@@ -49,7 +50,7 @@ export default {
         ...mapMutations(['navActiveRefresh']),
         shoppingCenter() {
             alert('正在开发中.')
-            location.href = 'http://www.chunyajkkj.com'
+            // location.href = 'http://www.chunyajkkj.com'
         }
     }
 

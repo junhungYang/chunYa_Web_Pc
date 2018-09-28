@@ -3,10 +3,10 @@
     <div class="contact">
         <div class="header">
             <div class="text-box">
-                <p>CONTACT ME</p>
+                <p>ADVERTISE</p>
                 <P> 
                     <img src="../assets/img/lineGreen.png" alt="">
-                    联系我们 
+                    企业招聘 
                     <img src="../assets/img/lineGreen.png" alt="">
                 </P>
                 <p>始于自然，源于发生</p>

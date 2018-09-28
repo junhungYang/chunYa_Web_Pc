@@ -45,7 +45,10 @@
                         <div class="text">
                             <div class="news-title">{{item.name}}</div>
                             <div class="news-cont" v-html="item.contentDesc"></div>
-                            <div class="news-time"><img src="../assets/img/time.png" alt="">{{item.addTime}}</div>
+                            <div class="news-time">
+                                <img src="../assets/img/time.png" alt="">
+                                <span v-text="getTime(item.addTime)"></span>
+                                </div>
                         </div>
                     </li>
                 </ul>
@@ -72,7 +75,10 @@
                         <div class="text">
                             <div class="news-title">{{item.name}}</div>
                             <div class="news-cont" v-html="item.contentDesc"></div>
-                            <div class="news-time"><img src="../assets/img/time.png" alt="">{{item.addTime}}</div>
+                            <div class="news-time">
+                                <img src="../assets/img/time.png" alt="">
+                                <span v-text="getTime(item.addTime)"></span>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -99,7 +105,10 @@
                         <div class="text">
                             <div class="news-title">{{item.name}}</div>
                             <div class="news-cont" v-html="item.contentDesc"></div>
-                            <div class="news-time"><img src="../assets/img/time.png" alt="">{{item.addTime}}</div>
+                            <div class="news-time">
+                                <img src="../assets/img/time.png" alt="">
+                                <span v-text="getTime(item.addTime)"></span>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -149,6 +158,19 @@ export default {
         this.sendRequest()
     },
     methods: {
+        getTime(time) {
+            let timeObj = new Date(time)
+            console.log(timeObj)
+            let year = timeObj.getFullYear()
+            console.log(year)
+            let day = timeObj.getDate()
+            let month = timeObj.getMonth() + 1
+            let hour = timeObj.getHours()
+            let min = timeObj.getMinutes()
+            let sec = timeObj.getSeconds()
+            return `${year}-${month}-${day} ${hour}:${min}:${sec}`
+
+        },
         sendRequest() {
             //新闻快讯
             this.getNewsPage()
@@ -371,10 +393,12 @@ export default {
                             left: 25px;
                             bottom: 0;
                             font-size: 14px;
-                            color:#272727;
                             img {
                                 width: 14px;
-                                margin-right: 10px;
+                                margin-right: 4px;
+                            }
+                            span {
+                                color:#272727;
                             }
                         }
                     }

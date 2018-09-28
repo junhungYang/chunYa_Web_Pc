@@ -14,16 +14,16 @@
                 <p>始于自然，源于发生</p>
             </div>
         </div>
-        <div class="brand-logo">
+        <div class="brand-logo" v-show="!showFlag">
             <img src="../assets/img/brandGreen.png" alt="">
         </div>
-        <div class="content">
+        <div class="content" v-show="!showFlag">
             <ul>
-                <li class="good" v-for="item,index in goodsList">
+                <li class="good" v-for="item,index in goodsList" @click="getContDesc(item)">
                     <div class="text">
                         <div class="text-box">
                             <p>{{item.name}}</p>
-                            <p class="contentDesc"></p>
+                            <p class="contentDesc">{{item.contentDesc}}</p>
                         </div>
                     </div>
                     <div class="img">
@@ -32,6 +32,11 @@
                 </li>
             </ul>
         </div>
+        <!-- <div class="contentDesc" v-show="showFlag">
+            <p class="title">{{contentDesc.name}}</p>
+            <p class="cont-desc">{{contentDesc.contentDesc}}</p>
+            <img :src="contentDesc.coverPicUrl" alt="">
+        </div> -->
     </div>
 </template>
 <script>
@@ -40,7 +45,9 @@ import Vue from 'vue'
 export default {
     data() {
         return {
-            goodsList:[]
+            goodsList:[],
+            contentDesc: null,
+            showFlag: false
         }
     },
     created() {
@@ -61,6 +68,11 @@ export default {
             this.goodsList.forEach( (item,index) => {
                 contDesc[index].innerHTML = item.contentDesc
             })
+        },
+        getContDesc(itemObj) {
+            // this.contentDesc = itemObj
+            // console.log(itemObj)
+            // this.showFlag = true
         }
     }
 }
@@ -116,20 +128,17 @@ export default {
         margin: 0 auto;
         ul {
             width: 100%;
-            display: flex;
-            flex-wrap: wrap;
             li {
                 display:flex;
-                width: 440px;
+                margin: 0 auto;
                 margin: 0 20px;
                 height: 220px; 
                 margin-bottom: 70px;
-                .img,.text {
-                    flex: 1;
-                    // border: 1px solid red;
-                }
+                width: 100%;
                 .text {
+                    flex: 1;
                     color:#515151;
+                    padding-right: 25px;
                     p:nth-of-type(1) {
                         padding-top: 30px;
                         padding-left: 30px;
@@ -140,18 +149,20 @@ export default {
                         overflow: hidden;
                         text-overflow: ellipsis;
                     }
-                    p:nth-of-type(2) {
+                    .contentDesc {
                         padding-top: 10px;
                         padding-left: 30px;
                         padding-right: 30px;
                         font-size: 14px;
-                        height: 120px;
+                        height: 150px;
                         overflow: hidden;
                         text-overflow: ellipsis;
+                        line-height: 30px;
                     }
                 }
                 .img {
                     overflow: hidden;
+                    width: 300px;
                     img {
                         height: 100%;
                     }
