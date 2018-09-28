@@ -168,7 +168,7 @@ export default {
             let hour = timeObj.getHours()
             let min = timeObj.getMinutes()
             let sec = timeObj.getSeconds()
-            return `${year}-${month}-${day} ${hour}:${min}:${sec}`
+            return `${year}-${month}-${day}`
 
         },
         sendRequest() {
@@ -381,10 +381,10 @@ export default {
                         }
                         .news-cont {
                             margin-top: 15px;
-                            height: 90px;
+                            height: 75px;
                             // border: 1px solid red;
                             font-size: 14px;
-                            line-height: 18px;
+                            line-height: 25px;
                             overflow: hidden;
                             color:#7a7a7a;
                         }
@@ -437,6 +437,7 @@ export default {
                     margin-top: 30px;
                     font-size: 14px;
                     color:#8c8c8c;
+                    line-height: 30px;
                 }
                 .events-content {
                     text-align: center;
