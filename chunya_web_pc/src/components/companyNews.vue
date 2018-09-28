@@ -13,36 +13,32 @@
             <div class="menu-list">
                 <ul>
                     <li :class="activePage === 'news' ? 'active' : 'unActive'" 
-                        @click.stop="activePage = 'news'">
+                        @click.stop="newsPageShow('news')">
                         <span>新闻快讯</span>
                     </li>
                     <li :class="activePage === 'events' ? 'active' : 'unActive'" 
-                        @click.stop="activePage = 'events'">
+                        @click.stop="eventsPageShow('events')">
                         <span>活动资讯</span>
                     </li>
                     <li :class="activePage === 'health' ? 'active' : 'unActive'" 
-                        @click.stop="activePage = 'health'">
+                        @click.stop="healthPageShow('health')">
                         <span>健康分享</span>
                     </li>
-                    <li :class="activePage === 'video' ? 'active' : 'unActive'" 
+                    <!-- <li :class="activePage === 'video' ? 'active' : 'unActive'" 
                         @click.stop="activePage = 'video'">
                         <span>宣传视频</span>
                     </li>
                     <li :class="activePage === 'videoDesc' ? 'active' : 'unActive'" 
                         @click.stop="activePage = 'videoDesc'">
                         <span>视频详情</span>
-                    </li>
-                    <li :class="activePage === 'newsDesc' ? 'active' : 'unActive'" 
-                        @click.stop="activePage = 'newsDesc'">
-                        <span>资讯详情</span>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
         <div class="content">
             <div ref="news" class="news-box" v-show="activePage === 'news'">
-                <ul>
-                    <li v-for="item in newsData">
+                <ul v-show="!newsDescShowFlag">
+                    <li v-for="item in newsData" @click="showingNewsDesc(item)">
                         <div class="news-img">
                             <img :src="item.coverPicUrl" alt="">
                         </div>
@@ -53,15 +49,74 @@
                         </div>
                     </li>
                 </ul>
-                <div class="btn">
+                <div class="btn" v-show="!newsDescShowFlag">
                     <span class="prev" 
                     @click="changeNewsPage('prev')">&lt;&lt; 上一页</span>
                     <span class="next"
                     @click="changeNewsPage('next')">下一页 &gt;&gt;</span>
                 </div>
+                <div class="newsDescContent" v-show="newsDescShowFlag">
+                    <div class="title">{{newsShowContent.name}}</div>
+                    <div class="news-content" v-html="newsShowContent.contentDesc"></div>
+                    <div class="img">
+                        <img :src="newsShowContent.coverPicUrl" alt="">
+                    </div>
+                </div>
             </div>
-            <div ref="events" class="cont-box" v-show="activePage === 'events'"></div>
-            <div ref="health" class="cont-box" v-show="activePage === 'health'"></div>
+            <div ref="events" class="events" v-show="activePage === 'events'">
+                <ul v-show="!eventsDescShowFlag">
+                    <li v-for="item in eventsData" @click="showingEventsDesc(item)">
+                        <div class="news-img">
+                            <img :src="item.coverPicUrl" alt="">
+                        </div>
+                        <div class="text">
+                            <div class="news-title">{{item.name}}</div>
+                            <div class="news-cont" v-html="item.contentDesc"></div>
+                            <div class="news-time"><img src="../assets/img/time.png" alt="">{{item.addTime}}</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="btn" v-show="!eventsDescShowFlag">
+                    <span class="prev" 
+                    @click="changeEventsPage('prev')">&lt;&lt; 上一页</span>
+                    <span class="next"
+                    @click="changeEventsPage('next')">下一页 &gt;&gt;</span>
+                </div>
+                <div class="newsDescContent" v-show="eventsDescShowFlag">
+                    <div class="title">{{eventsShowContent.name}}</div>
+                    <div class="events-content" v-html="eventsShowContent.contentDesc"></div>
+                    <div class="img">
+                        <img :src="eventsShowContent.coverPicUrl" alt="">
+                    </div>
+                </div>
+            </div>
+            <div ref="health" class="health" v-show="activePage === 'health'">
+                <ul v-show="!healthDescShowFlag">
+                    <li v-for="item in healthData" @click="showingHealthDesc(item)">
+                        <div class="news-img">
+                            <img :src="item.coverPicUrl" alt="">
+                        </div>
+                        <div class="text">
+                            <div class="news-title">{{item.name}}</div>
+                            <div class="news-cont" v-html="item.contentDesc"></div>
+                            <div class="news-time"><img src="../assets/img/time.png" alt="">{{item.addTime}}</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="btn" v-show="!healthDescShowFlag">
+                    <span class="prev" 
+                    @click="changeHealthPage('prev')">&lt;&lt; 上一页</span>
+                    <span class="next"
+                    @click="changeHealthPage('next')">下一页 &gt;&gt;</span>
+                </div>
+                <div class="newsDescContent" v-show="healthDescShowFlag">
+                    <div class="title">{{healthShowContent.name}}</div>
+                    <div class="events-content" v-html="healthShowContent.contentDesc"></div>
+                    <div class="img">
+                        <img :src="healthShowContent.coverPicUrl" alt="">
+                    </div>
+                </div>
+            </div>
             <!-- <div ref="health" class="cont-box" v-show="activePage === 'health'"></div>
             <div ref="health" class="cont-box" v-show="activePage === 'health'"></div> -->
             <div ref="newsDesc" class="cont-box" v-show="activePage === 'newsDesc'"></div>
@@ -75,7 +130,19 @@ export default {
         return {
             activePage: 'news',
             newsData:'',
-            newsPageIndex: 1
+            newsPageIndex: 1,
+            newsDescShowFlag:false,
+            newsShowContent:'',
+            //events
+            eventsPageIndex: 1,
+            eventsData:'',
+            eventsDescShowFlag:false,
+            eventsShowContent:'',
+            //health
+            healthPageIndex:1,
+            healthData:'',
+            healthDescShowFlag:false,
+            healthShowContent:''
         }
     },
     created() {
@@ -94,7 +161,6 @@ export default {
             }).then(res => {
                 if(res.data.errno === 0) {
                     this.newsData = res.data.data.data
-                    console.log(this.newsData)
                 }else {
                     alert(res.data.msg)
                 }
@@ -108,7 +174,82 @@ export default {
                 this.newsPageIndex ++
                 this.getNewsPage()
             }
-        }
+        },
+        showingNewsDesc(item) {
+            this.newsDescShowFlag = true
+            this.newsShowContent = item
+        },
+        newsPageShow(pageIndex) {
+            this.activePage = pageIndex
+            this.newsDescShowFlag = false
+        },
+        //events部分
+        eventsPageShow(pageIndex) {
+            this.activePage = pageIndex;
+            this.eventsDescShowFlag = false
+            this.getEventsPage()
+        },
+        getEventsPage() {
+            newsList({
+                type: 2,
+                page: this.eventsPageIndex,
+                size: 10
+            }).then(res => {
+                if(res.data.errno === 0) {
+                    this.eventsData = res.data.data.data
+                    console.log(this.eventsData)
+                }else {
+                    alert(res.data.msg)
+                }
+            })
+        },
+        changeEventsPage(payload) {
+            if(this.eventsPageIndex !== 1 && payload === 'prev') {
+                this.eventsPageIndex --
+                this.getEventsPage()
+            }else if (payload === 'next') {
+                this.eventsPageIndex ++
+                this.getEventsPage()
+            }
+        },
+        showingEventsDesc(item) {
+            this.eventsDescShowFlag = true
+            this.eventsShowContent = item
+        },
+        //health部分
+        healthPageShow(pageIndex) {
+            this.activePage = pageIndex
+            this.healthDescShowFlag = false
+            this.getHealthPage()
+        },
+        getHealthPage() {
+            newsList({
+                type: 3,
+                page: this.healthPageIndex,
+                size: 10
+            }).then(res => {
+                if(res.data.errno === 0) {
+                    this.healthData = res.data.data.data
+                    console.log(this.healthData)
+                }else {
+                    alert(res.data.msg)
+                }
+            })
+        },
+        changeHealthPage(payload) {
+            if(this.healthPageIndex !== 1 && payload === 'prev') {
+                this.healthPageIndex --
+                this.getHealthPage()
+            }else if (payload === 'next') {
+                this.healthPageIndex ++
+                this.getHealthPage()
+            }
+        },
+        showingHealthDesc(item) {
+            this.healthDescShowFlag = true
+            this.healthShowContent = item
+        },
+        //
     }
 
 }
@@ -155,15 +296,15 @@ export default {
                     margin:0 10px;
                     span {
                         display:block;
-                        width: 110px;
+                        width: 140px;
                         border-radius: 30px;
                         margin: 0 auto;
-                        height: 30px;
+                        height: 40px;
                         text-align: center;
-                        line-height: 30px;
+                        line-height: 40px;
                         letter-spacing: 1px;
                         cursor: pointer;
-                        font-size: 14px;
+                        font-size: 16px;
                     }
                 }
                 .active {
@@ -185,8 +326,7 @@ export default {
         width: 1200px;
         margin: 0 auto;
         margin-bottom: 100px;
-        .news-box {
-            
+        .news-box,.events,.health {
             ul {
                 display: flex;
                 flex-wrap: wrap;
@@ -257,6 +397,31 @@ export default {
                 }
                 span:nth-of-type(2) {
                     margin-left: 15px;
+                }
+            }
+            .newsDescContent {
+                .title,.news-content,.img {
+                    text-align: center;
+                }
+                .title {
+                    padding-top: 50px;
+                    font-size: 18px;
+                    color:#353535;
+                }
+                .news-content {
+                    margin-top: 30px;
+                    font-size: 14px;
+                    color:#8c8c8c;
+                }
+                .events-content {
+                    text-align: center;
+                    margin-top: 30px;
+                    font-size: 14px;
+                    line-height: 40px;
+                    color:#8c8c8c;
+                }
+                .img {
+                    margin-top :50px;
                 }
             }
         }
