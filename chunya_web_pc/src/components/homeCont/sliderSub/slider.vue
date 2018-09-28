@@ -196,7 +196,7 @@ export default {
             right: 130px;
         }
     }
-    @media screen and (min-width: 1400px) and (max-width:1955){
+    @media screen and (min-width: 1400px) and (max-width:1599px){
         img:nth-of-type(1) {
             left: 70px;
         }

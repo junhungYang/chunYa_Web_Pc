@@ -87,46 +87,6 @@ export default {
             color:#fff;
         }
     }
-    .control {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 100%;
-        z-index: 99;
-        img {
-            position: absolute;
-        }
-        // @media screen and (min-width: 1920px){
-        //     img:nth-of-type(1) {
-        //         left: 260px;
-        //     }
-        //     img:nth-of-type(2) {
-        //         right: 260px;
-        //     }
-        // }
-        // @media screen and (min-width: 1599px) and (max-width:1920px){
-        //     img:nth-of-type(1) {
-        //         left: 130px;
-        //     }
-        //     img:nth-of-type(2) {
-        //         right: 130px;
-        //     }
-        // }
-        // @media screen and (max-width:1599px) {
-        //     img:nth-of-type(1) {
-        //         left: 40px;
-        //     }
-        //     img:nth-of-type(2) {
-        //         right: 40px;
-        //     }
-        // }
-        img:nth-of-type(1) {
-            left: 90px;
-        }
-        img:nth-of-type(2) {
-            right: 90px;
-        }
-    }
 }
 </style>
 

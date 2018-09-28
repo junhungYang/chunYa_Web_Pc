@@ -39,6 +39,7 @@ export default {
 #app {
   max-width: 1920px;
   min-width: 1200px;
+  margin:0 auto;
   header {
         height: 100px;
         background:#fff;
