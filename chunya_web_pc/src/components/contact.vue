@@ -82,7 +82,7 @@ export default {
 
 <style lang="less" scoped>
 .contact {
-  .header {
+    .header {
         background: #e5fff4;
         height: 285px;
         .text-box,.menu-list {

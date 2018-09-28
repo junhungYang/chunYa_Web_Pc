@@ -26,24 +26,24 @@ function previewGoodsList() {
 
 //公司动态 / 新闻快讯、活动资讯、健康分享
 function newsList(dataObj) {
-    axios.post("/api/official/newsList", qs.stringify(dataObj));
+    return axios.post("/api/official/newsList", qs.stringify(dataObj));
 }
 
 //公司动态 / 宣传视频
 function videoList(dataObj) {
-    axios.post("/api/official/videoList", qs.stringify(dataObj));
+    return axios.post("/api/official/videoList", qs.stringify(dataObj));
 }
 
 //公司动态 / 视频详情
 function videoDetail() {
-    axios.post("/api/official/videoDetail",qs.stringify({
+    return axios.post("/api/official/videoDetail",qs.stringify({
         id: 4
     }));
 }
 
 //公司动态 / 资讯详情
 function newsDetail() {
-    axios.post("/api/official/newsDetail", qs.stringify({
+    return axios.post("/api/official/newsDetail", qs.stringify({
         id: 3
     }));
 }
@@ -52,5 +52,6 @@ function newsDetail() {
 export {
     spreadList,
     commonArticle,
-    previewGoodsList
+    previewGoodsList,
+    newsList
 }
