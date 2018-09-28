@@ -4,15 +4,15 @@
         <div class="wrap">
             <ul>
                 <li>
-                    <router-link tag="span" to="/">首页</router-link>
+                    <router-link :class="navActive === '#/' ? 'routeAct' : ''" tag="span" to="/">首页</router-link>
                     <div v-show="navActive === '#/'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/companyNews">公司动态</router-link>
+                    <router-link :class="navActive === '#/companyNews' ? 'routeAct' : ''" tag="span" to="/companyNews">公司动态</router-link>
                     <div v-show="navActive === '#/companyNews'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/goodsList">产品预览</router-link>
+                    <router-link :class="navActive === '#/goodsList' ? 'routeAct' : ''" tag="span" to="/goodsList">产品预览</router-link>
                     <div v-show="navActive === '#/goodsList'" class="active"></div>
                 </li>
                 <!-- <li>
@@ -20,15 +20,15 @@
                     <div v-show="navActive === '#/memberCenter'" class="active"></div>
                 </li> -->
                 <li>
-                    <router-link tag="span" to="/shoppingCenter">在线商城</router-link>
+                    <router-link :class="navActive === '#/shoppingCenter' ? 'routeAct' : ''" tag="span" to="/shoppingCenter">在线商城</router-link>
                     <div v-show="navActive === '#/shoppingCenter'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/about">关于我们</router-link>
+                    <router-link :class="navActive === '#/about' ? 'routeAct' : ''" tag="span" to="/about">关于我们</router-link>
                     <div v-show="navActive === '#/about'" class="active"></div>
                 </li>
                 <li>
-                    <router-link tag="span" to="/contact">企业招聘</router-link>
+                    <router-link :class="navActive === '#/contact' ? 'routeAct' : ''" tag="span" to="/contact">企业招聘</router-link>
                     <div v-show="navActive === '#/contact'" class="active"></div>
                 </li>
             </ul>
@@ -36,10 +36,17 @@
     </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState,mapMutations } from 'vuex'
 export default {
     computed: {
         ...mapState(['navActive'])
+    },
+    created() {
+        console.log(location.hash)
+        this.navActiveRefresh(location.hash)
+    },
+    methods: {
+        ...mapMutations(['navActiveRefresh'])
     }
 
 }
@@ -70,6 +77,9 @@ export default {
                     font-size: 15px;
                     font-family: hansansMed;
                     font-weight: bold;
+                    color:#727171;
+                }
+                .routeAct {
                     color:#353535;
                 }
                 .active {

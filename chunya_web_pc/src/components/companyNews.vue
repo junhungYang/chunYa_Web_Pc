@@ -326,6 +326,7 @@ export default {
         width: 1200px;
         margin: 0 auto;
         margin-bottom: 100px;
+        min-height: 400px;
         .news-box,.events,.health {
             ul {
                 display: flex;
