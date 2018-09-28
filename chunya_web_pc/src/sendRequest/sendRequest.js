@@ -17,7 +17,6 @@ function commonArticle (dataObj) {
     return axios.post("/api/official/commonArticle",qs.stringify(dataObj))
 }
 
-
 //产品预览 / 产品预览
 function previewGoodsList() {
     return axios.post("/api/official/previewGoodsList",qs.stringify({

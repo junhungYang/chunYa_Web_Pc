@@ -3,18 +3,25 @@
         <div class="header">
             <div class="text-box">
                 <p>ABOUT ME</p>
-                <P>关于我们</P>
+                <P> 
+                    <img src="../assets/img/lineGreen.png" alt="">
+                    关于我们 
+                    <img src="../assets/img/lineGreen.png" alt="">
+                </P>
                 <p>始于自然，源于发生</p>
             </div>
             <div class="menu-list">
                 <ul>
-                    <li @click.stop="activePage = 'company'">
+                    <li :class="activePage === 'company' ? 'active' : 'unActive'" 
+                        @click.stop="activePage = 'company'">
                         <span>公司介绍</span>
                     </li>
-                    <li @click.stop="activePage = 'brand'">
+                    <li :class="activePage === 'brand' ? 'active' : 'unActive'" 
+                        @click.stop="activePage = 'brand'">
                         <span>品牌介绍</span>
                     </li>
-                    <li @click.stop="activePage = 'culture'">
+                    <li :class="activePage === 'culture' ? 'active' : 'unActive'" 
+                        @click.stop="activePage = 'culture'">
                         <span>企业文化</span>
                     </li>
                 </ul>
@@ -85,19 +92,22 @@ export default {
         .text-box {
             padding-top: 50px;
             p:nth-of-type(1) {
-                font-size: 30px;
-                font-weight: bold;
+                font-size: 33px;
                 color: #1caa70;
                 text-align: center;
+                font-family: hansansBlack;
             }
             p:nth-of-type(2) {
                 margin-top: 14px;
                 font-size: 24px;
                 color: #2f2725;
                 text-align: center;
+                img {
+                    vertical-align: middle;
+                }
             }
             p:nth-of-type(3) {
-                margin-top: 8px;
+                margin-top: 12px;
                 color: #8c8c8c;
                 text-align: center;
             }
@@ -116,11 +126,21 @@ export default {
                         height: 40px;
                         text-align: center;
                         line-height: 40px;
-                        background:#1caa70;
-                        color:#fff;
                         letter-spacing: 1px;
                         cursor: pointer;
                         font-size: 18px;
+                    }
+                }
+                .active {
+                    span {
+                        background:#1caa70;
+                        color:#fff;
+                    }
+                }
+                .unActive {
+                    span {
+                        border: 1px solid #1caa70;
+                        color: #1caa70;
                     }
                 }
             }
@@ -130,8 +150,23 @@ export default {
         width: 690px;
         margin: 0 auto;
         height: 208px;
+        position: relative;
         img {
-            height: 65px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+    }
+    .content {
+        width: 1200px;
+        margin: 0 auto;
+        font-size: 14px;
+        div {
+            line-height: 30px;
+            color:#8c8c8c;
+            text-align: center;
+            margin-bottom: 60px;
         }
     }
 }

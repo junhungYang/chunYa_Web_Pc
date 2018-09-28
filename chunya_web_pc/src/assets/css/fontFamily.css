@@ -1,16 +1,24 @@
 @font-face {
   font-family: hansansBold;
-  src: url('../fonts/SourceHanSansCN-Bold.otf') format('opentype')
+  src: url('../fonts/SourceSansPro-Bold.otf')
 }
 @font-face {
   font-family: hansansMed;
-  src: url('../fonts/SourceHanSansCN-Medium.otf') format('opentype')
+  src: url('../fonts/SourceSansPro-Semibold.otf') 
 }
 @font-face {
   font-family: hansansReg;
-  src: url('../fonts/SourceHanSansCN-Regular.otf') format('opentype')
+  src: url('../fonts/SourceSansPro-Regular.otf') 
 }
 @font-face {
   font-family: hansansNor;
-  src: url('../fonts/SourceHanSansCN-Normal.otf') format('opentype')
+  src: url('../fonts/SourceSansPro-Regular.otf')
+}
+@font-face {
+  font-family: hansansLig;
+  src: url('../fonts/SourceSansPro-Light.otf')
+}
+@font-face {
+  font-family: hansansBlack;
+  src: url('../fonts/SourceSansPro-Black.otf')
 }
