@@ -13,15 +13,15 @@
             <div class="menu-list">
                 <ul>
                     <li :class="activePage === 'news' ? 'active' : 'unActive'" 
-                        @click.stop="newsPageShow('news')">
+                        @click.stop="whichPageShow('news')">
                         <span>新闻快讯</span>
                     </li>
                     <li :class="activePage === 'events' ? 'active' : 'unActive'" 
-                        @click.stop="eventsPageShow('events')">
+                        @click.stop="whichPageShow('events')">
                         <span>活动资讯</span>
                     </li>
                     <li :class="activePage === 'health' ? 'active' : 'unActive'" 
-                        @click.stop="healthPageShow('health')">
+                        @click.stop="whichPageShow('health')">
                         <span>健康分享</span>
                     </li>
                     <!-- <li :class="activePage === 'video' ? 'active' : 'unActive'" 
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="content">
-            <div ref="news" class="news-box" v-show="activePage === 'news'">
+            <!-- <div ref="news" class="news-box" v-show="activePage === 'news'">
                 <ul v-show="!newsDescShowFlag">
                     <li v-for="item in newsData" @click="showingNewsDesc(item)">
                         <div class="news-img">
@@ -65,218 +65,40 @@
                         <img :src="newsShowContent.coverPicUrl" alt="">
                     </div>
                 </div>
-            </div>
-            <div ref="events" class="events" v-show="activePage === 'events'">
-                <ul v-show="!eventsDescShowFlag">
-                    <li v-for="item in eventsData" @click="showingEventsDesc(item)">
-                        <div class="news-img">
-                            <img :src="item.coverPicUrl" alt="">
-                        </div>
-                        <div class="text">
-                            <div class="news-title">{{item.name}}</div>
-                            <div class="news-cont" v-html="item.contentDesc"></div>
-                            <div class="news-time">
-                                <img src="../assets/img/time.png" alt="">
-                                <span v-text="getTime(item.addTime)"></span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="btn" v-show="!eventsDescShowFlag">
-                    <span class="prev" 
-                    @click="changeEventsPage('prev')">&lt;&lt; 上一页</span>
-                    <span class="next"
-                    @click="changeEventsPage('next')">下一页 &gt;&gt;</span>
-                </div>
-                <div class="newsDescContent" v-show="eventsDescShowFlag">
-                    <div class="title">{{eventsShowContent.name}}</div>
-                    <div class="events-content" v-html="eventsShowContent.contentDesc"></div>
-                    <div class="img">
-                        <img :src="eventsShowContent.coverPicUrl" alt="">
-                    </div>
-                </div>
-            </div>
-            <div ref="health" class="health" v-show="activePage === 'health'">
-                <ul v-show="!healthDescShowFlag">
-                    <li v-for="item in healthData" @click="showingHealthDesc(item)">
-                        <div class="news-img">
-                            <img :src="item.coverPicUrl" alt="">
-                        </div>
-                        <div class="text">
-                            <div class="news-title">{{item.name}}</div>
-                            <div class="news-cont" v-html="item.contentDesc"></div>
-                            <div class="news-time">
-                                <img src="../assets/img/time.png" alt="">
-                                <span v-text="getTime(item.addTime)"></span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="btn" v-show="!healthDescShowFlag">
-                    <span class="prev" 
-                    @click="changeHealthPage('prev')">&lt;&lt; 上一页</span>
-                    <span class="next"
-                    @click="changeHealthPage('next')">下一页 &gt;&gt;</span>
-                </div>
-                <div class="newsDescContent" v-show="healthDescShowFlag">
-                    <div class="title">{{healthShowContent.name}}</div>
-                    <div class="events-content" v-html="healthShowContent.contentDesc"></div>
-                    <div class="img">
-                        <img :src="healthShowContent.coverPicUrl" alt="">
-                    </div>
-                </div>
-            </div>
-            <!-- <div ref="health" class="cont-box" v-show="activePage === 'health'"></div>
-            <div ref="health" class="cont-box" v-show="activePage === 'health'"></div> -->
-            <div ref="newsDesc" class="cont-box" v-show="activePage === 'newsDesc'"></div>
+            </div> -->
+            <v-news v-show="activePage === 'news'"></v-news>
+            <v-events v-show="activePage === 'events'"></v-events>
+            <v-health v-show="activePage === 'health'" ></v-health>
         </div>
     </div>
 </template>
 <script>
 import {newsList} from '../sendRequest/sendRequest'
+import health from './companyNews/health'
+import events from './companyNews/events'
+import news from './companyNews/news'
+import {mapState,mapMutations} from 'vuex'
 export default {
+    components: {
+        'v-health': health,
+        'v-events': events,
+        'v-news': news
+    },
     data() {
         return {
             activePage: 'news',
-            newsData:'',
-            newsPageIndex: 1,
-            newsDescShowFlag:false,
-            newsShowContent:'',
-            //events
-            eventsPageIndex: 1,
-            eventsData:'',
-            eventsDescShowFlag:false,
-            eventsShowContent:'',
-            //health
-            healthPageIndex:1,
-            healthData:'',
-            healthDescShowFlag:false,
-            healthShowContent:''
         }
     },
-    created() {
-        this.sendRequest()
-    },
     methods: {
-        getTime(time) {
-            let timeObj = new Date(time)
-            console.log(timeObj)
-            let year = timeObj.getFullYear()
-            console.log(year)
-            let day = timeObj.getDate()
-            let month = timeObj.getMonth() + 1
-            let hour = timeObj.getHours()
-            let min = timeObj.getMinutes()
-            let sec = timeObj.getSeconds()
-            return `${year}-${month}-${day}`
-
-        },
-        sendRequest() {
-            //新闻快讯
-            this.getNewsPage()
-        },
-        getNewsPage() {
-            newsList({
-                type: 1,
-                page: this.newsPageIndex,
-                size: 10
-            }).then(res => {
-                if(res.data.errno === 0) {
-                    this.newsData = res.data.data.data
-                }else {
-                    alert(res.data.msg)
-                }
-            })
-        },
-        changeNewsPage(payload) {
-            if(this.newsPageIndex !== 1 && payload === 'prev') {
-                this.newsPageIndex --
-                this.getNewsPage()
-            }else if (payload === 'next') {
-                this.newsPageIndex ++
-                this.getNewsPage()
-            }
-        },
-        showingNewsDesc(item) {
-            this.newsDescShowFlag = true
-            this.newsShowContent = item
-        },
-        newsPageShow(pageIndex) {
+        ...mapMutations(['contDescFlagRefresh']),
+        whichPageShow(pageIndex) {
             this.activePage = pageIndex
-            this.newsDescShowFlag = false
-        },
-        //events部分
-        eventsPageShow(pageIndex) {
-            this.activePage = pageIndex;
-            this.eventsDescShowFlag = false
-            this.getEventsPage()
-        },
-        getEventsPage() {
-            newsList({
-                type: 2,
-                page: this.eventsPageIndex,
-                size: 10
-            }).then(res => {
-                if(res.data.errno === 0) {
-                    this.eventsData = res.data.data.data
-                    console.log(this.eventsData)
-                }else {
-                    alert(res.data.msg)
-                }
-            })
-        },
-        changeEventsPage(payload) {
-            if(this.eventsPageIndex !== 1 && payload === 'prev') {
-                this.eventsPageIndex --
-                this.getEventsPage()
-            }else if (payload === 'next') {
-                this.eventsPageIndex ++
-                this.getEventsPage()
-            }
-        },
-        showingEventsDesc(item) {
-            this.eventsDescShowFlag = true
-            this.eventsShowContent = item
-        },
-        //health部分
-        healthPageShow(pageIndex) {
-            this.activePage = pageIndex
-            this.healthDescShowFlag = false
-            this.getHealthPage()
-        },
-        getHealthPage() {
-            newsList({
-                type: 3,
-                page: this.healthPageIndex,
-                size: 10
-            }).then(res => {
-                if(res.data.errno === 0) {
-                    this.healthData = res.data.data.data
-                    console.log(this.healthData)
-                }else {
-                    alert(res.data.msg)
-                }
-            })
-        },
-        changeHealthPage(payload) {
-            if(this.healthPageIndex !== 1 && payload === 'prev') {
-                this.healthPageIndex --
-                this.getHealthPage()
-            }else if (payload === 'next') {
-                this.healthPageIndex ++
-                this.getHealthPage()
-            }
-        },
-        showingHealthDesc(item) {
-            this.healthDescShowFlag = true
-            this.healthShowContent = item
-        },
-        //
+            this.contDescFlagRefresh({mod:pageIndex,flag:false})
+        }
     }
 
 }
 </script>
-
 <style lang="less" scoped>
 .company-news {
     .header {
