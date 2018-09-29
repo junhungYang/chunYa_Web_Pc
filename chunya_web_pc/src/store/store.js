@@ -10,7 +10,6 @@ export const store = new Vuex.Store({
             eventsDescShowFlag:false,
             healthDescShowFlag: false,
 
-
          },
          mutations: {
             navActiveRefresh(state, payload) {

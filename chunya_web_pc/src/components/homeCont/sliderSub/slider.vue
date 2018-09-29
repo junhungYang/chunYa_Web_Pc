@@ -75,13 +75,13 @@ export default {
             clearTimeout(this.timer)
             this.timer = setTimeout(() => {
                 this.slider.prev()
-            }, 800);
+            }, 500);
         },
         clickNext() {
             clearTimeout(this.timer)
             this.timer = setTimeout(() => {
                 this.slider.next()
-            }, 800);
+            }, 500);
         },
         _setSliderWidth(isResize) {
             // 获取sliderGroup的子元素
@@ -177,6 +177,7 @@ export default {
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
+    cursor: pointer;
     img {
         position: absolute;
     }

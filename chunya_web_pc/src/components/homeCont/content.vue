@@ -28,7 +28,7 @@
                                 </p>
                             </div>
                             <div class="learnMore">
-                                <img src="../../assets/img/knowMore.png" alt="">
+                                <img src="../../assets/img/knowMore.png" @click="toGoodList">
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                             <p>——</p>
                         </div>
                         <div class="knowMore">
-                            <img src="../../assets/img/knowMore.png" alt="">
+                            <img src="../../assets/img/knowMore.png" @click="toGoodList">
                         </div>
                     </div>
                 </div>
@@ -110,13 +110,14 @@
                 </div>
                 <div class="img-knowMore">
                     <img src="../../assets/img/book.jpg" alt="">
-                    <img src="../../assets/img/knowMore.png" alt="">
+                    <img src="../../assets/img/knowMore.png" @click="toGoodList">
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
+import {mapMutations} from 'vuex'
 export default {
     data() {
         return {
@@ -132,6 +133,13 @@ export default {
         this.desc1BgWidth = (contWidth - 1200)/2 + 1200 + 'px'
         this.desc2rightPicWidth =contWidth - (contWidth - 1200) /2 - 790 +'px'
     },
+    methods: {
+        ...mapMutations(['navActiveRefresh']),
+        toGoodList() {
+            this.$router.push('goodsList')
+            this.navActiveRefresh(location.hash)
+        }
+    }
 }
 </script>
 
@@ -224,7 +232,7 @@ export default {
                         }
                         .learnMore {
                             margin-top: 36px;
-
+                            cursor: pointer;
                         }
                     }
                 }
@@ -288,6 +296,7 @@ export default {
                     }
                     .knowMore {
                         margin-top: 44px;
+                        cursor: pointer;
                     }
                 }
                 .plus {
@@ -431,6 +440,7 @@ export default {
             .img-knowMore {
                 margin-top:75px;
                 position: relative;
+                cursor: pointer;
                 img:nth-of-type(2) {
                     position: absolute;
                     left: 400px;

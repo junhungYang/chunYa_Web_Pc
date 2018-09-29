@@ -1,11 +1,8 @@
 <template>
     <div class="goods-list">
-        <!-- <div class="menu-list">
-            <p>产品预览</p>
-        </div> -->
         <div class="header">
             <div class="text-box">
-                <p>Goods Preview</p>
+                <p>GOODS PREVIEW</p>
                 <P> 
                     <img src="../assets/img/lineGreen.png" alt="">
                     产品预览 
@@ -14,10 +11,10 @@
                 <p>始于自然，源于发生</p>
             </div>
         </div>
-        <div class="brand-logo" v-show="!showFlag">
+        <div class="brand-logo"  v-show="!contDescShowFlag">
             <img src="../assets/img/brandGreen.png" alt="">
         </div>
-        <div class="content" v-show="!showFlag">
+        <div class="content" v-show="!contDescShowFlag">
             <ul>
                 <li class="good" v-for="item,index in goodsList" @click="getContDesc(item)">
                     <div class="text">
@@ -32,11 +29,13 @@
                 </li>
             </ul>
         </div>
-        <!-- <div class="contentDesc" v-show="showFlag">
-            <p class="title">{{contentDesc.name}}</p>
-            <p class="cont-desc">{{contentDesc.contentDesc}}</p>
-            <img :src="contentDesc.coverPicUrl" alt="">
-        </div> -->
+        <div class="descCont" v-show="contDescShowFlag">
+            <div class="title">{{contentDesc.name}}</div>
+            <div class="cont" v-html="contentDesc.contentDesc"></div>
+            <div class="img">
+                <img :src="contentDesc.coverPicUrl" alt="">
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -46,8 +45,9 @@ export default {
     data() {
         return {
             goodsList:[],
-            contentDesc: null,
-            showFlag: false
+            contentDesc: {},
+            showFlag: false,
+            contDescShowFlag:false
         }
     },
     created() {
@@ -70,9 +70,9 @@ export default {
             })
         },
         getContDesc(itemObj) {
-            // this.contentDesc = itemObj
-            // console.log(itemObj)
-            // this.showFlag = true
+            this.contentDesc = itemObj
+            this.contDescShowFlag = true
+            this.showFlag = true
         }
     }
 }
@@ -168,6 +168,26 @@ export default {
                     }
                 }
             }
+        }
+    }
+    .descCont {
+        margin-bottom: 150px;
+        .title,.cont,.img {
+            text-align: center;
+        }
+        .title {
+            padding-top: 50px;
+            font-size: 18px;
+            color:#353535;
+        }
+        .cont {
+            margin-top: 30px;
+            font-size: 14px;
+            color:#8c8c8c;
+            line-height: 30px;
+        }
+        .img {
+            margin-top :50px;
         }
     }
 }
