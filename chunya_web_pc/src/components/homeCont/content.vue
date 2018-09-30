@@ -156,7 +156,8 @@ export default {
             bottom: 42px;
             font-size: 12px;
             color: rgba(141,141,141,0.8);
-            font-family: hansansNor;
+            // font-family: hansansNor;
+            font-family:Helvetica
         }
     }
     .desc1 {
@@ -199,7 +200,8 @@ export default {
                         .title {
                             padding-top: 30px;
                             font-size: 20px;
-                            font-family: hansansBold;
+                            // font-family: hansansBold;
+                            font-weight: bold;
                             color:#3e3a39;
                         }
                         .line-decorate {
@@ -215,7 +217,7 @@ export default {
                             margin-top: 50px;
                             font-size: 14px;
                             line-height: 18px;
-                            font-family: hansansMed;
+                            // font-family: hansansMed;
                             color: #8c8c8c;
                         }
                         .desc-English {
@@ -261,7 +263,8 @@ export default {
                 height:187px;
                 font-size: 12px;
                 color: rgba(141,141,141,0.8);
-                font-family: hansansNor;
+                // font-family: hansansNor;
+                font-family: Helvetica;
                 text-align: right;
             }
             .up {
@@ -270,7 +273,8 @@ export default {
                 .cont-text {
                     .title {
                         font-size: 20px;
-                        font-family: hansansBold;
+                        // font-family: hansansBold;
+                        font-weight: bold;
                         color: #3e3a39;
                     }
                     .main {
@@ -278,7 +282,7 @@ export default {
                         p {
                             font-size:14px;
                             line-height: 18px;
-                            font-family: hansansMed;
+                            // font-family: hansansMed;
                             color: #8c8c8c;
                         }
                     }
@@ -328,7 +332,7 @@ export default {
                         font-size: 14px;
                         line-height: 18px;
                         color: #8d8d8d;
-                        font-family: hansansNor;
+                        // font-family: hansansNor;
                     }
                     .Eng {
                         margin-top: 12px;
@@ -379,7 +383,7 @@ export default {
             top: 0;
             font-size: 12px;
             color: rgba(141,141,141,0.8);
-            font-family: hansansNor;
+            font-family: Helvetica;
         }
         .left-box {
             width: 490px;
@@ -401,13 +405,14 @@ export default {
                 }
                 .title {
                     font-size: 20px;
-                    font-family: hansansBold;
+                    // font-family: hansansBold;
+                    font-weight: bold;
                     color:#3e3a39;
                     line-height: 22px;
                 }
                 .desc {
                     margin-top: 10px;
-                    font-family: hansansMed;
+                    // font-family: hansansMed;
                     color: #8c8c8c;
                     font-size: 14px;
                     line-height: 18px;
@@ -417,7 +422,7 @@ export default {
                     width: 303px;
                     font-size: 14px;
                     line-height: 18px;
-                    font-family: hansansNor;
+                    // font-family: hansansNor;
                     color: #8d8d8d;
                 }
                 .Eng {

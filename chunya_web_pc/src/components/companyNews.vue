@@ -112,7 +112,8 @@ export default {
                 font-size: 33px;
                 color: #1caa70;
                 text-align: center;
-                font-family: hansansBlack;
+                font-family: Helvetica;
+                font-weight: bold;
             }
             p:nth-of-type(2) {
                 margin-top: 14px;

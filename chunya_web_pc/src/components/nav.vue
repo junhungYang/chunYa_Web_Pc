@@ -80,7 +80,6 @@ export default {
                 cursor: pointer;
                 span {
                     font-size: 15px;
-                    font-family: hansansMed;
                     font-weight: bold;
                     color:#727171;
                 }

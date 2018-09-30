@@ -76,14 +76,14 @@ export default {
         p:first-of-type {
             margin-top: 30px;
             font-size: 50px;
-            font-family: hansansBold;
+            // font-family: hansansBold;
             color:#fff;
         }
         p:last-of-type {
             text-align: center;
             margin-top: 10px;
             font-size: 16px;
-            font-family: hansansBold;
+            // font-family: hansansBold;
             color:#fff;
         }
     }

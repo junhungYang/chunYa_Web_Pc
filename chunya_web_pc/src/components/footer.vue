@@ -61,7 +61,8 @@ export default {
                 right: 0;
                 top: 45px;
                 font-size: 20px;
-                font-family:hansansMed; 
+                font-family: helvetica;
+                font-weight: 600;
                 color: #ebedee;
             }
             
@@ -78,7 +79,6 @@ export default {
                     p {
                         font-size: 15px;
                         line-height: 22px;
-                        font-family: hansansNor;
                     }
                 }
                 .Copyright {
@@ -87,7 +87,6 @@ export default {
                     p {
                         font-size: 15px;
                         line-height: 18px;
-                        font-family: hansansNor;
                     }
                 }
             }
