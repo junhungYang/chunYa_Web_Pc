@@ -1,49 +1,115 @@
 
 <template>
-    <div class="contact">
-        <div class="header">
-            <div class="text-box">
-                <p>ADVERTISE</p>
-                <P> 
-                    <img src="../assets/img/lineGreen.png" alt="">
-                    企业招聘 
-                    <img src="../assets/img/lineGreen.png" alt="">
-                </P>
-                <p>始于自然，源于发生</p>
-            </div>
-            <div class="menu-list">
-                <ul>
-                    <li :class="activePage === 'adverShop' ? 'active' : 'unActive'" 
-                        @click.stop="activePage = 'adverShop'">
-                        <span>招商合作</span>
-                    </li>
-                    <li :class="activePage === 'adverPer' ? 'active' : 'unActive'" 
-                        @click.stop="activePage = 'adverPer'">
-                        <span>招贤纳士</span>
-                    </li>
-                    <li :class="activePage === 'callUs' ? 'active' : 'unActive'" 
-                        @click.stop="activePage = 'callUs'">
-                        <span>联系我们</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="brand-logo">
-            <img src="../assets/img/brandGreen.png" alt="">
+    <div class="advertise">
+        <div class="poster">
+            <img src="../assets/img/advertise_poster.jpg" alt="">
         </div>
         <div class="content">
-            <div ref="adverShop" class="cont-box" v-show="activePage === 'adverShop'"></div>
-            <div ref="adverPer" class="cont-box" v-show="activePage === 'adverPer'"></div>
-            <div ref="callUs" class="cont-box" v-show="activePage === 'callUs'"></div>
+            <ul class="nav-list">
+                <li v-for="item in advertiseData">{{item.jobName}}</li>
+            </ul>
+            <div class="desc">
+                <p class="title">寻找这样的你：</p>
+                <div class="main" v-html="activeData.desc"></div>
+                <p class="icon">+</p>
+            </div>
+            <div class="responsibility">
+                <header>
+                    <i class="icon">
+                        <img src="../assets/img/advertise_responIcon.png" alt="">
+                    </i>
+                    <div class="text">
+                        <p>岗位职责</p>
+                        <p>responsibility</p>
+                    </div>
+                </header>
+                <ul class="main">
+                    <li v-for="item in activeData.responsibility" >{{item}}</li>
+                </ul>
+            </div>
+            <div class="qualifications">
+                <header>
+                    <i class="icon"></i>
+                    <div class="text">
+                        <p>任职资格</p>
+                        <p>qualifications</p>
+                    </div>
+                </header>
+                <ul class="main">
+                    <li v-for="item in activeData.qualifications" >{{item}}</li>
+                </ul>
+            </div>
+            <div class="treatment">
+                <header>
+                    <i class="icon"></i>
+                    <div class="text">
+                        <p>福利待遇</p>
+                        <p>Welfare treatment</p>
+                    </div>
+                </header>
+                <ul class="main">
+                    <li v-for="item in activeData.treatment" >{{item}}</li>
+                </ul>
+            </div>
+            <div class="work-time">
+                <header>
+                    <i class="icon"></i>
+                    <div class="text">
+                        <p>上班时间：</p>
+                        <p>working time</p>
+                    </div>
+                </header>
+                <div class="main">
+                    <p>早上9:30-12:00   下午14:00-18:30  大小周  节假日按法定放假</p>
+                </div>
+            </div>
+            <div class="work-address">
+                <header>
+                    <i class="icon"></i>
+                    <div class="text">
+                        <p>工作地址：</p>
+                        <p>work address</p>
+                    </div>
+                </header>
+                <div class="main">
+                    <div class="text">
+                        <div>
+                            <p>深圳市龙华区创业路汇海广场</p>
+                            <p>A座908号</p>
+                        </div>
+                        <div>
+                            <p>联系电话：</p>
+                            <p>0775-2377 5137</p>
+                        </div>
+                        <div>
+                            <p>简历投递：</p>
+                            <p>2136469690@qq.com</p>
+                        </div>
+                    </div>
+                    <div class="map">
+                        <img src="" alt="">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import {commonArticle} from '../sendRequest/sendRequest'
+import axios from 'axios'
 export default {
     data() {
         return {
-            activePage: 'adverShop'
+            activePage: 'adverShop',
+            advertiseData: [],
+            activeIndex:0
+        }
+    },
+    computed: {
+        activeData() {
+            if(this.advertiseData.length !== 0) {
+                return this.advertiseData[this.activeIndex]
+            }
         }
     },
     created() {
@@ -51,28 +117,11 @@ export default {
     },
     methods: {
         sendRequest() {
-            //招商合作
-            commonArticle({id: 2}).then(res => {
+            axios.get('http://www.chunyajkkj.com/ch/advertise/advertise')
+            .then(res => {
                 if(res.data.errno === 0) {
-                    this.$refs.adverShop.innerHTML = res.data.data.contentDesc
-                }else {
-                    alert(res.data.msg)
-                }
-            })
-            //招贤纳士
-            commonArticle({id: 6}).then(res => {
-                if(res.data.errno === 0) {
-                    this.$refs.adverPer.innerHTML = res.data.data.contentDesc
-                }else {
-                    alert(res.data.msg)
-                }
-            })
-            //联系我们
-            commonArticle({id: 7}).then(res => {
-                if(res.data.errno === 0) {
-                    this.$refs.callUs.innerHTML = res.data.data.contentDesc
-                }else {
-                    alert(res.data.msg)
+                    this.advertiseData = res.data.data
+                    console.log(res.data.data)
                 }
             })
         },
@@ -81,93 +130,72 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.contact {
-    .header {
-        background: #e5fff4;
-        height: 285px;
-        .text-box,.menu-list {
-            width: 690px;
-            margin: 0 auto;
-        }
-        .text-box {
-            padding-top: 50px;
-            p:nth-of-type(1) {
-                font-size: 33px;
-                color: #1caa70;
-                text-align: center;
-                font-family: helvetica;
-                font-weight: bold;
-            }
-            p:nth-of-type(2) {
-                margin-top: 14px;
-                font-size: 24px;
-                color: #2f2725;
-                text-align: center;
-                img {
-                    vertical-align: middle;
-                }
-            }
-            p:nth-of-type(3) {
-                margin-top: 12px;
-                color: #8c8c8c;
-                text-align: center;
-            }
-        }
-        .menu-list {
-            margin-top: 40px;
-            ul {
-                display:flex;
-                li {
-                    flex: 1;
-                    span {
-                        display:block;
-                        width: 165px;
-                        border-radius: 30px;
-                        margin: 0 auto;
-                        height: 40px;
-                        text-align: center;
-                        line-height: 40px;
-                        letter-spacing: 1px;
-                        cursor: pointer;
-                        font-size: 18px;
-                    }
-                }
-                .active {
-                    span {
-                        background:#1caa70;
-                        color:#fff;
-                    }
-                }
-                .unActive {
-                    span {
-                        border: 1px solid #1caa70;
-                        color: #1caa70;
-                    }
-                }
-            }
-        }
-    }
-    .brand-logo {
-        width: 690px;
-        margin: 0 auto;
-        height: 208px;
+.advertise {
+    max-width: 1920px;
+    margin:0 auto;
+    .poster {
         position: relative;
+        height: 600px;
         img {
             position: absolute;
             left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
+            transform: translateX(-50%)
         }
     }
     .content {
         width: 1200px;
         margin: 0 auto;
-        font-size: 14px;
-        div {
-            line-height: 30px;
-            color:#8c8c8c;
-            text-align: center;
-            margin-bottom: 60px;
+        .nav-list {
+            padding-top:115px;
+            display: flex;
+            li {
+                background-image: url(../assets/img/about_iconBox.jpg);
+                width: 350px;
+                height: 95px;
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin: 0 auto;
+                text-align: center;
+                line-height: 95px;
+                font-size: 30px;
+                color: #151417;
+                margin-top: 15px;
+                font-weight: 600;
+            }
+        }
+        .desc {
+            margin-top: 150px;
+            .title {
+                font-size: 21px;
+                font-weight: bold;
+                color: #151417;
+                text-align: center;
+            }
+            .main {
+                margin-top: 28px;
+                text-align: center;
+                font-size: 18px;
+                line-height: 25px;
+                color: #858585;
+            }
+            .icon {
+                margin-top: 65px;
+                font-size: 48px;
+                font-weight: bold;
+                color: #151417;
+                text-align: center;
+            }
+        }
+        .responsibility {
+            margin-top: 135px;
+            header {
+                display: flex;
+                .text {
+                    p {
+                        font-family: normal
+                    }
+                }
+            }
         }
     }
 }

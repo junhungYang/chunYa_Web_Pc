@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '../static/reset.css'
+import '../mock/index'
 // import './assets/css/fontFamily.css'
 import { store } from './store/store'
 Vue.config.productionTip = false
