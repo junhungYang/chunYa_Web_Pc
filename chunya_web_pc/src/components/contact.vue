@@ -6,7 +6,9 @@
         </div>
         <div class="content">
             <ul class="nav-list">
-                <li v-for="item in advertiseData">{{item.jobName}}</li>
+                <li v-for="item,index in advertiseData"
+                @click="changePage(index)" 
+                :class="index === activeIndex ? 'activeBg' : ''">{{item.jobName}}</li>
             </ul>
             <div class="desc">
                 <p class="title">寻找这样的你：</p>
@@ -33,7 +35,7 @@
             <div class="qualifications">
                 <header>
                     <i class="icon">
-                        <img src="../assets/img/advertise_responIcon.png" alt="">
+                        <img src="../assets/img/advertise_qualiIcon.png" alt="">
                     </i>
                     <div class="text">
                         <p>任职资格</p>
@@ -45,7 +47,7 @@
             <div class="treatment">
                 <header>
                     <i class="icon">
-                        <img src="../assets/img/advertise_responIcon.png" alt="">
+                        <img src="../assets/img/advertise_treatIcon.png" alt="">
                     </i>
                     <div class="text">
                         <p>福利待遇</p>
@@ -57,7 +59,7 @@
             <div class="work-time">
                 <header>
                     <i class="icon">
-                        <img src="../assets/img/advertise_responIcon.png" alt="">
+                        <img src="../assets/img/advertise_timeIcon.png" alt="">
                     </i>
                     <div class="text">
                         <p>上班时间:</p>
@@ -71,7 +73,7 @@
             <div class="work-address">
                 <header>
                     <i class="icon">
-                        <img src="../assets/img/advertise_responIcon.png" alt="">
+                        <img src="../assets/img/advertise_addreIcon.png" alt="">
                     </i>
                     <div class="text">
                         <p>工作地址:</p>
@@ -123,6 +125,9 @@ export default {
         this.sendRequest()
     },
     methods: {
+        changePage(index) {
+            this.activeIndex = index
+        },
         sendRequest() {
             axios.get('http://www.chunyajkkj.com/ch/advertise/advertise')
             .then(res => {
@@ -144,6 +149,7 @@ export default {
     .poster {
         position: relative;
         height: 600px;
+        overflow: hidden;
         img {
             position: absolute;
             left: 50%;
@@ -157,19 +163,27 @@ export default {
             padding-top:115px;
             display: flex;
             li {
-                background-image: url(../assets/img/about_iconBox.jpg);
-                width: 350px;
-                height: 95px;
+                border: 6px solid #858585;
+                width: 338px;
+                height: 83px;
                 background-repeat: no-repeat;
                 background-size: cover;
                 margin: 0 auto;
                 text-align: center;
-                line-height: 95px;
+                line-height: 83px;
                 font-size: 30px;
-                color: #151417;
+                color:#858585;
                 margin-top: 15px;
-                font-weight:900;
-                font-family: "SF Pro SC","SF Pro Display","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif
+                font-weight:600;
+                cursor: pointer;
+            }
+            .activeBg {
+                border: 0;
+                background-image: url(../assets/img/about_iconBox.jpg);
+                width: 350px;
+                height: 95px;
+                line-height: 95px;
+                color: #151417;
             }
         }
         .desc {
