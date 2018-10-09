@@ -24,38 +24,43 @@
                     </div>
                 </header>
                 <ul class="main">
-                    <li v-for="item in activeData.responsibility" >{{item}}</li>
+                    <li v-for="item,index in activeData.responsibility" >
+                        <p>{{item}}</p>
+                        <p>0{{index+1}}</p>
+                    </li>
                 </ul>
             </div>
             <div class="qualifications">
                 <header>
-                    <i class="icon"></i>
+                    <i class="icon">
+                        <img src="../assets/img/advertise_responIcon.png" alt="">
+                    </i>
                     <div class="text">
                         <p>任职资格</p>
                         <p>qualifications</p>
                     </div>
                 </header>
-                <ul class="main">
-                    <li v-for="item in activeData.qualifications" >{{item}}</li>
-                </ul>
+                <div class="main" v-html="activeData.qualifications"></div>
             </div>
             <div class="treatment">
                 <header>
-                    <i class="icon"></i>
+                    <i class="icon">
+                        <img src="../assets/img/advertise_responIcon.png" alt="">
+                    </i>
                     <div class="text">
                         <p>福利待遇</p>
                         <p>Welfare treatment</p>
                     </div>
                 </header>
-                <ul class="main">
-                    <li v-for="item in activeData.treatment" >{{item}}</li>
-                </ul>
+                <div class="main" v-html="activeData.treatment"></div>
             </div>
             <div class="work-time">
                 <header>
-                    <i class="icon"></i>
+                    <i class="icon">
+                        <img src="../assets/img/advertise_responIcon.png" alt="">
+                    </i>
                     <div class="text">
-                        <p>上班时间：</p>
+                        <p>上班时间:</p>
                         <p>working time</p>
                     </div>
                 </header>
@@ -65,13 +70,15 @@
             </div>
             <div class="work-address">
                 <header>
-                    <i class="icon"></i>
+                    <i class="icon">
+                        <img src="../assets/img/advertise_responIcon.png" alt="">
+                    </i>
                     <div class="text">
-                        <p>工作地址：</p>
+                        <p>工作地址:</p>
                         <p>work address</p>
                     </div>
                 </header>
-                <div class="main">
+                <div class="main-address">
                     <div class="text">
                         <div>
                             <p>深圳市龙华区创业路汇海广场</p>
@@ -87,7 +94,7 @@
                         </div>
                     </div>
                     <div class="map">
-                        <img src="" alt="">
+                        <img src="../assets/img/advertise_map.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -119,6 +126,7 @@ export default {
         sendRequest() {
             axios.get('http://www.chunyajkkj.com/ch/advertise/advertise')
             .then(res => {
+                console.log(res)
                 if(res.data.errno === 0) {
                     this.advertiseData = res.data.data
                     console.log(res.data.data)
@@ -160,7 +168,8 @@ export default {
                 font-size: 30px;
                 color: #151417;
                 margin-top: 15px;
-                font-weight: 600;
+                font-weight:900;
+                font-family: "SF Pro SC","SF Pro Display","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif
             }
         }
         .desc {
@@ -186,14 +195,96 @@ export default {
                 text-align: center;
             }
         }
-        .responsibility {
+        .responsibility,.qualifications,.treatment,.work-time,.work-address {
             margin-top: 135px;
             header {
                 display: flex;
+                padding-bottom: 25px;
+                border-bottom: 2px solid #ebedee;
                 .text {
-                    p {
-                        font-family: normal
+                    margin-left: 10px;
+                    p:first-of-type {
+                        font-size: 30px;
+                        font-weight: bold;
+                        color: #151417;
                     }
+                    p:last-of-type {
+                        margin-top: 4px;
+                        font-size: 15px;
+                        color: #858585;
+                    }
+                }
+            }
+            .main {
+                margin-top: 50px;
+                font-size: 18px;
+                line-height: 30px;
+                color: #858585
+            }
+        }
+        .responsibility {
+            .main {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                li {
+                    margin-top: 65px;
+                    box-sizing: border-box;
+                    width: 301px;
+                    height: 285px;
+                    padding-top: 60px;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    font-size: 14px;
+                    text-align: center;
+                    line-height: 18px;
+                    p:first-of-type {
+                        color: #858585;
+                        height: 145px;
+                    }
+                    p:last-of-type {
+                        margin: 0 auto;
+                        font-size: 50px;
+                        line-height: 50px;
+                        width: 50px;
+                        text-align: center;
+                        color: #151417;
+                        border-bottom: 5px solid #151417;
+                        font-family:tt0663m;
+                    }
+                }
+                li:nth-child(odd) {
+                    background:url(../assets/img/adverBox.png);
+                    background-repeat: no-repeat;
+                }
+                li:nth-child(even) {
+                    background:#ebedee;
+                }
+            }
+        }
+        .work-address {
+            margin-bottom: 250px;
+            .main-address {
+                margin-top: 70px;
+                display: flex;
+                .text {
+                    flex: 1;
+                    div {
+                        p {
+                            font-size: 18px;
+                            line-height: 23px;
+                            color: #858585
+                        }
+                    }
+                    div:nth-of-type(2) {
+                        margin-top: 115px;
+                    }
+                    div:nth-of-type(3) {
+                        margin-top: 50px;
+                    }
+                }
+                .map {
+                    width: 815px;
                 }
             }
         }
