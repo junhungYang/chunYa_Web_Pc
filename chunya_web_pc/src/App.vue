@@ -3,16 +3,6 @@
     <div class="wrap">
       <header>
           <img src="/static/imgData/logo.png" alt="">
-          <div class="label-left">
-            <span>联系方式</span>
-            <span>招商加盟</span>
-            <span>0755-2377 5137</span>
-          </div>
-          <div class="label-right">
-            <span>注册</span>
-            <span>登录</span>
-            <span>移动版</span>
-          </div>
       </header>
       <v-nav></v-nav>
       <router-view/>
@@ -64,28 +54,6 @@ export default {
           left: 50%;
           top: 50%;
           transform: translate(-50%,-50%)
-      }
-      .label-left,.label-right {
-        font-size: 0;
-        top:30px;
-        color:#a2a1a2;
-        position: absolute;
-        span {
-          font-size: 12px;
-          cursor: pointer;
-        }
-        span:nth-of-type(2) {
-          margin-left: 20px;
-        }
-        span:nth-of-type(3) {
-          margin-left: 20px;
-        }
-      }
-      .label-left {
-        left: 50px;
-      }
-      .label-right {
-        right: 50px;
       }
     }
 }
