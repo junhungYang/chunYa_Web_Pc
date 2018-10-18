@@ -48,10 +48,15 @@ function newsDetail() {
     }));
 }
 
+//企业招聘 /招聘信息
+function recruitmentDetail(){
+    return axios.post("/api/official/recruitmentList");
+}
 
 export {
     spreadList,
     commonArticle,
     previewGoodsList,
-    newsList
+    newsList,
+    recruitmentDetail
 }
