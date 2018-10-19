@@ -1,8 +1,14 @@
 <template>
     <div class="events">
-        <ul v-show="!eventsDescShowFlag">
-            <li v-for="item in eventsData" @click="showingEventsDesc(item)">
-                <div class="img">
+        <div class="events-img">
+            <img :src="eventsimg" :class={fade:imgupdate}>
+        </div>
+        <div class="events-content">
+            <div class="events-getmore">活动资讯 ></div>
+        <ul>
+            <li v-for="item,index in eventsData" @click="showingEventsDesc(item)" @mouseover="changepic(index,item.coverPicUrl)">
+                <p>{{item.name}}</p><span>></span>
+               <!--  <div class="img">
                     <img :src="item.coverPicUrl" alt="">
                 </div>
                 <div class="text">
@@ -12,22 +18,10 @@
                         <img src="../../assets/img/time.png" alt="">
                         <span v-text="getTime(item.addTime)"></span>
                     </div>
-                </div>
+                </div> -->
             </li>
         </ul>
-        <div class="btn" v-show="!eventsDescShowFlag">
-            <span class="prev" 
-            @click="changeEventsPage('prev')">&lt;&lt; 上一页</span>
-            <span class="next"
-            @click="changeEventsPage('next')">下一页 &gt;&gt;</span>
-        </div>
-        <div class="descContent" v-show="eventsDescShowFlag">
-            <div class="title">{{eventsShowContent.name}}</div>
-            <div class="cont" v-html="eventsShowContent.contentDesc"></div>
-            <div class="img">
-                <img :src="eventsShowContent.coverPicUrl" alt="">
-            </div>
-        </div>
+    </div>
     </div>
 </template>
 <script>
@@ -39,6 +33,8 @@ export default {
             eventsPageIndex: 1,
             eventsData:'',
             eventsShowContent:'',
+            eventsimg:'',
+            imgupdate: true
         }
     },
     created() {
@@ -60,10 +56,11 @@ export default {
             newsList({
                 type: 2,
                 page: this.eventsPageIndex,
-                size: 10
+                size: 6
             }).then(res => {
                 if(res.data.errno === 0) {
                     this.eventsData = res.data.data.data
+                    this.eventsimg = res.data.data.data[0].coverPicUrl
                 }else {
                     alert(res.data.msg)
                 }
@@ -81,6 +78,14 @@ export default {
         showingEventsDesc(item) {
             this.contDescFlagRefresh({mod:'events',flag:true})
             this.eventsShowContent = item
+        },
+        changepic(index,url){
+            // console.log(index,url);
+            this.eventsimg = url;
+            this.imgupdate = false;
+            setTimeout(() => {
+                this.imgupdate = true
+            },200)
         }
     }
 }
@@ -88,17 +93,77 @@ export default {
 
 <style lang="less" scoped>
 .events {
-    ul {
+    margin-top: 148px;
+    width: 1920px;
+    position:relative;
+    .events-img{
+        width:100%;
+        height: 1000px;
+        img{
+            width:100%;
+            height: 1000px;
+            opacity: 0;
+        }
+        .fade{
+            opacity: 1;
+            transition: .5s linear;
+        }
+    }
+    .events-content{
+        position: absolute;
+        top: 68px;
+        left: 0px;
+        width: 963px;
+        height: 847px;
+        background:rgba(255,255,255,.8);
+        .events-getmore{
+            width: 345px;
+            height: 92px;
+            line-height: 92px;
+            background-image: url('../../assets/img/about_iconBox.jpg');
+            text-align: center;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-top: 83px;
+            margin-left:497px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+     ul {
         display: flex;
         flex-wrap: wrap;
+        width: 733px;
+        margin: 0 auto;
+        margin-top: 100px;
         li {
-            width: 580px;
-            height: 160px;
-            margin-top: 60px;
+            width: 100%;
+            height: 83px;
+            border-bottom:1px solid #B2B2B2; 
             display: flex;
-            padding:0 10px;
             .img,.text {
                 flex: 1;
+            }
+             p{
+                width: 527px;
+                line-height: 131px;
+                color:#858585;
+                font-size: 18px;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+            }
+            span{
+                width: 22px;
+                height: 22px;
+                display: block;
+                line-height:23px;
+                font-size: 18px;
+                text-align:center;
+                color:#858585;
+                line-height: 20px;
+                border: 1px solid #858585;
+                margin-left: 180px;
+                margin-top: 50px;
             }
             .img {
                 overflow: hidden;
@@ -141,7 +206,13 @@ export default {
                 }
             }
         }
+        li:hover{
+            p{
+                color: black;
+            }
+        }
     }
+}
     .btn {
         width: 200px;
         margin: 0 auto;

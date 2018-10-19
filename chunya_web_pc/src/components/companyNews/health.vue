@@ -1,8 +1,12 @@
 <template>
     <div class="health">
-        <ul v-show="!healthDescShowFlag">
-            <li v-for="item in healthData" @click="showingHealthDesc(item)">
-                <div class="img">
+        <div class="health-getmore">新闻快讯 ></div>
+            <div class="health-box">
+            <img :src="healthimg" :class={fade:imgupdate}>
+        <ul>
+            <li v-for="item,index in healthData" @click="showingHealthDesc(item)" :key="index" @mouseover="changepic(index,item.coverPicUrl)">
+                <p>{{item.name}}</p><span>></span>
+               <!--  <div class="img">
                     <img :src="item.coverPicUrl" alt="">
                 </div>
                 <div class="text">
@@ -12,22 +16,10 @@
                         <img src="../../assets/img/time.png" alt="">
                         <span v-text="getTime(item.addTime)"></span>
                     </div>
-                </div>
+                </div> -->
             </li>
         </ul>
-        <div class="btn" v-show="!healthDescShowFlag">
-            <span class="prev" 
-            @click="changeHealthPage('prev')">&lt;&lt; 上一页</span>
-            <span class="next"
-            @click="changeHealthPage('next')">下一页 &gt;&gt;</span>
-        </div>
-        <div class="descContent" v-show="healthDescShowFlag">
-            <div class="title">{{healthShowContent.name}}</div>
-            <div class="cont" v-html="healthShowContent.contentDesc"></div>
-            <div class="img">
-                <img :src="healthShowContent.coverPicUrl" alt="">
-            </div>
-        </div>
+    </div>
     </div>
 </template>
 <script>
@@ -38,7 +30,9 @@ export default {
         return {
             healthPageIndex:1,
             healthData:'',
-            healthShowContent:''
+            healthShowContent:'',
+            healthimg:'',
+            imgupdate: true
         }
     },
     created() {
@@ -60,11 +54,11 @@ export default {
             newsList({
                 type: 3,
                 page: this.healthPageIndex,
-                size: 10
+                size: 6
             }).then(res => {
                 if(res.data.errno === 0) {
                     this.healthData = res.data.data.data
-                    console.log(this.healthData)
+                    this.healthimg = res.data.data.data[0].coverPicUrl;
                 }else {
                     alert(res.data.msg)
                 }
@@ -83,21 +77,64 @@ export default {
             this.contDescFlagRefresh({mod:'health',flag:true})
             this.healthShowContent = item
         },
+        changepic(index,url){
+            // console.log(index,url);
+            this.healthimg = url;
+            this.imgupdate = false;
+            setTimeout(() => {
+                this.imgupdate = true
+            },200)
+        }
     }
 }
 </script>
 
 <style lang="less" scoped>
 .health {
+    .health-getmore{
+        width: 345px;
+        height: 92px;
+        line-height: 92px;
+        position: relative;
+        left: calc(100% - 462px);
+        background-image: url('../../assets/img/about_iconBox.jpg');
+        text-align: center;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-top: 150px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .health-box{
+        width: 1920px;
+        margin-top: 110px;
+        display: box;
+        display:-webkit-box;
+        display:-moz-box;
+        display:-o-box;
+        box-pack:start;
+        -webkit-box-pack: start;
+        -moz-box-pack: start;
+        -o-box-pack: start;
+        img{
+            width:960px;
+            height:460px;
+            opacity: 0; 
+        }
+        .fade{
+            opacity: 1;
+            transition: .5s linear;
+        }
     ul {
-        display: flex;
-        flex-wrap: wrap;
+        width: 733px;
+        margin-left: 110px;
         li {
-            width: 580px;
-            height: 160px;
-            margin-top: 60px;
+           width: 100%;
+            overflow: hidden;
+            height: 83px;
             display: flex;
-            padding:0 10px;
+            border-bottom:1px solid #B2B2B2;
+            cursor: pointer;
             .img,.text {
                 flex: 1;
             }
@@ -106,6 +143,28 @@ export default {
                 img {
                     // width: 100%;
                 }
+            }
+             p{
+                width: 527px;
+                line-height: 131px;
+                color:#858585;
+                font-size: 18px;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+            }
+            span{
+                width: 22px;
+                height: 22px;
+                display: block;
+                line-height:23px;
+                font-size: 18px;
+                text-align:center;
+                color:#858585;
+                line-height: 20px;
+                border: 1px solid #858585;
+                margin-left: 180px;
+                margin-top: 50px;
             }
             .text {
                 padding-left: 25px;
@@ -142,7 +201,13 @@ export default {
                 }
             }
         }
+        li:hover{
+            p{
+                color: black;
+            }
+        }
     }
+}
     .btn {
         width: 200px;
         margin: 0 auto;

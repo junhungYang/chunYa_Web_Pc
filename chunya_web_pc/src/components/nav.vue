@@ -12,8 +12,11 @@
                     <div v-show="navActive === '#/companyNews'" class="active"></div>
                 </li>
                 <li>
-                    <router-link :class="navActive === '#/goodsList' ? 'routeAct' : ''" tag="span" to="/goodsList">产品预览</router-link>
+                    产品预览
                     <div v-show="navActive === '#/goodsList'" class="active"></div>
+                    <ul>
+                        <li><router-link :class="navActive === '#/goodsList' ? 'routeAct' : ''" tag="span" to="/goodsList">善缘米</router-link></li>
+                    </ul>
                 </li>
                 <!-- <li>
                     <router-link tag="span" to="/memberCenter">会员中心</router-link>
@@ -22,7 +25,7 @@
                 <li @click="shoppingCenter">
                     <!-- <router-link :class="navActive === '#/shoppingCenter' ? 'routeAct' : ''" tag="span" to="/shoppingCenter">在线商城</router-link> -->
                     <span>在线商城</span>
-                    <div v-show="navActive === '#/shoppingCenter'" class="active"></div>
+                    <div class="xcximg"></div>
                 </li>
                 <li>
                     <router-link :class="navActive === '#/about' ? 'routeAct' : ''" tag="span" to="/about">关于我们</router-link>
@@ -49,7 +52,7 @@ export default {
     methods: {
         ...mapMutations(['navActiveRefresh']),
         shoppingCenter() {
-            alert('正在开发中.')
+            return 
             // location.href = 'http://www.chunyajkkj.com'
         }
     }
@@ -67,6 +70,7 @@ export default {
         height: 100%;
         margin: 0 auto;
         position: relative;
+        z-index:100;
         ul {
             position: absolute;
             height: 70px;
@@ -78,6 +82,7 @@ export default {
                 display: inline-block;
                 margin: 0 28px;
                 cursor: pointer;
+                position:relative;
                 span {
                     font-size: 15px;
                     font-weight: bold;
@@ -89,6 +94,52 @@ export default {
                 .active {
                     height: 2px;
                     background:rgb(47,39,37)
+                }
+                .xcximg{
+                    position: absolute;
+                    width: 200px;
+                    height: 200px;
+                    top: 68px;
+                    left: -61px;
+                    background-image: url('../assets/img/xiaochengxu.jpg');
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size:90%;
+                    background-color: white;
+                    display:none;
+                }
+                ul{
+                    display: none;
+                    top: 68px;
+                    z-index: 99999;
+                    li{
+                        background-color: white;
+                        width: 123px;
+                        margin: 0px;
+                        text-align: center;
+                        height: 34px;
+                        line-height: 34px;
+                        display: block;
+                    }
+                    li:hover{
+                        background-image: url('../assets/img/buttoncolor.png');
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        span{
+                            color: white;
+                        }
+                    }
+                }
+            }
+            li:nth-child(3):hover{
+                ul{
+                    display: block;
+                }
+            }
+            li:nth-child(4):hover{
+                .xcximg{
+                    display:block;
                 }
             }
         }

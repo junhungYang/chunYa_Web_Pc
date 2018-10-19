@@ -4,7 +4,7 @@
       <header>
           <img src="/static/imgData/logo.png" alt="">
       </header>
-      <v-nav></v-nav>
+      <v-nav id="abc"></v-nav>
       <router-view/>
       <v-footer></v-footer>
     </div>
@@ -36,7 +36,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+#id {
+  position: absolute;
+}
 @font-face {
     font-family: tt0663m;
     src: url(../static/fonts/tt0663m_.ttf) ;

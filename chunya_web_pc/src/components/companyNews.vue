@@ -1,17 +1,9 @@
 <template>
     <div class="company-news">
         <div class="header">
-            <div class="text-box">
-                <p>COMPANY NEWS</p>
-                <P> 
-                    <img src="../assets/img/lineGreen.png" alt="">
-                    公司动态 
-                    <img src="../assets/img/lineGreen.png" alt="">
-                </P>
-                <p>始于自然，源于发生</p>
-            </div>
-            <div class="menu-list">
-                <ul>
+            <img src="../assets/img/compynew1.png" >
+            <!-- <div class="menu-list"> -->
+                <!-- <ul>
                     <li :class="activePage === 'news' ? 'active' : 'unActive'" 
                         @click.stop="whichPageShow('news')">
                         <span>新闻快讯</span>
@@ -23,7 +15,7 @@
                     <li :class="activePage === 'health' ? 'active' : 'unActive'" 
                         @click.stop="whichPageShow('health')">
                         <span>健康分享</span>
-                    </li>
+                    </li> -->
                     <!-- <li :class="activePage === 'video' ? 'active' : 'unActive'" 
                         @click.stop="activePage = 'video'">
                         <span>宣传视频</span>
@@ -32,8 +24,8 @@
                         @click.stop="activePage = 'videoDesc'">
                         <span>视频详情</span>
                     </li> -->
-                </ul>
-            </div>
+                <!-- </ul> -->
+            <!-- </div> -->
         </div>
         <div class="content">
             <!-- <div ref="news" class="news-box" v-show="activePage === 'news'">
@@ -66,9 +58,9 @@
                     </div>
                 </div>
             </div> -->
-            <v-news v-show="activePage === 'news'"></v-news>
-            <v-events v-show="activePage === 'events'"></v-events>
-            <v-health v-show="activePage === 'health'" ></v-health>
+            <v-news></v-news>
+            <v-events></v-events>
+            <v-health></v-health>
         </div>
     </div>
 </template>
@@ -102,8 +94,11 @@ export default {
 <style lang="less" scoped>
 .company-news {
     .header {
-        background: #e5fff4;
-        height: 285px;
+        width: 100%;
+        max-width: 1920px;
+        img{
+            width: 100%;  
+        }
         .text-box {
             width: 690px;
             margin: 0 auto;
@@ -168,10 +163,10 @@ export default {
         }
     }
     .content {
-        width: 1200px;
+        width: 1920px;
         margin: 0 auto;
         margin-bottom: 100px;
-        min-height: 400px;
+        
     }
 }
 </style>

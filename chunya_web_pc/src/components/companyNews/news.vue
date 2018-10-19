@@ -1,21 +1,25 @@
 <template>
     <div class="news-box">
-        <ul v-show="!newsDescShowFlag">
-            <li v-for="item in newsData" @click="showingNewsDesc(item)">
-                <div class="news-img">
+        <div class="news-getmore">新闻快讯 ></div>
+            <div class="news-box-1">
+            <img :src="newsimg" :class={fade:imgupdate}>
+        <ul>
+            <li v-for="item,index in newsData" @click="showingNewsDesc(item)" @mouseover="changepic(index,item.coverPicUrl)" :key="index">
+                <p>{{item.name}}</p><span v-text="getTime(item.addTime)"></span>
+              <!--   <div class="news-img">
                     <img :src="item.coverPicUrl" alt="">
-                </div>
-                <div class="text">
+                </div> -->
+               <!--  <div class="text">
                     <div class="news-title">{{item.name}}</div>
                     <div class="news-cont" v-html="item.contentDesc"></div>
                     <div class="news-time">
                         <img src="../../assets/img/time.png" alt="">
                         <span v-text="getTime(item.addTime)"></span>
                         </div>
-                </div>
+                </div> -->
             </li>
         </ul>
-        <div class="btn" v-show="!newsDescShowFlag">
+       <!--  <div class="btn" v-show="!newsDescShowFlag">
             <span class="prev" 
             @click="changeNewsPage('prev')">&lt;&lt; 上一页</span>
             <span class="next"
@@ -27,7 +31,8 @@
             <div class="img">
                 <img :src="newsShowContent.coverPicUrl" alt="">
             </div>
-        </div>
+        </div> -->
+    </div>
     </div>
 </template>
 <script>
@@ -39,6 +44,8 @@ export default {
             newsData:'',
             newsPageIndex: 1,
             newsShowContent:'',
+            newsimg:'',
+            imgupdate: true
         }
     },
     created() {
@@ -54,16 +61,17 @@ export default {
             let year = timeObj.getFullYear()
             let day = timeObj.getDate()
             let month = timeObj.getMonth() + 1
-            return `${year}-${month}-${day}`
+            return `${year}.${month}.${day}`
         },
         getNewsPage() {
             newsList({
                 type: 1,
                 page: this.newsPageIndex,
-                size: 10
+                size: 7
             }).then(res => {
                 if(res.data.errno === 0) {
                     this.newsData = res.data.data.data
+                    this.newsimg = res.data.data.data[0].coverPicUrl;
                 }else {
                     alert(res.data.msg)
                 }
@@ -82,23 +90,88 @@ export default {
             this.contDescFlagRefresh({mod:'news',flag:true})
             this.newsShowContent = item
         },
+        changepic(index,url){
+            // console.log(index,url);
+            this.newsimg = url;
+            this.imgupdate = false;
+            setTimeout(() => {
+                this.imgupdate = true
+            },200)
+        }
     }
 }
 </script>
 
 <style lang="less" scoped>
 .news-box {
+    .news-getmore{
+        width: 345px;
+        height: 92px;
+        line-height: 92px;
+        position: relative;
+        left: calc(100% - 462px);
+        background-image: url('../../assets/img/about_iconBox.jpg');
+        text-align: center;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-top: 150px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .news-box-1{
+        width: 1920px;
+        margin-top: 110px;
+        display: box;
+        display:-webkit-box;
+        display:-moz-box;
+        display:-o-box;
+        box-pack:start;
+        -webkit-box-pack: start;
+        -moz-box-pack: start;
+        -o-box-pack: start;
+        img{
+            width:960px;
+            height:545px;
+            opacity: 0;    
+        }
+        .fade{
+            opacity: 1;
+            transition: .5s linear;
+        }
+
+    }
     ul {
-        display: flex;
-        flex-wrap: wrap;
+        width: 733px;
+        margin-left: 110px;
         li {
-            width: 580px;
-            height: 160px;
-            margin-top: 60px;
+            width: 100%;
+            overflow: hidden;
+            height: 83px;
             display: flex;
-            padding:0 10px;
+            border-bottom:1px solid #B2B2B2;
+            cursor: pointer;
             .news-img,.text {
                 flex: 1;
+            }
+            p{
+                width: 527px;
+                line-height: 131px;
+                color:#858585;
+                font-size: 18px;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+            }
+            span{
+                width:104px;
+                height: 32px;
+                border: 1px solid #858585;
+                margin-top: 36px;
+                margin-left: 100px;
+                text-align:center;
+                line-height: 32px;
+                font-size: 18px;
+                color:#858585;
             }
             .news-img {
                 overflow: hidden;
@@ -139,6 +212,26 @@ export default {
                         color:#272727;
                     }
                 }
+            }
+        }
+        li:nth-child(1){
+            height:49px;
+            p{
+                line-height: 66px;
+            }
+            span{
+                margin-top: 0px;
+            }
+        }
+        li:hover{
+            p{
+                color:#000000;
+            }
+            span{
+                color:white;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-image: url('../../assets/img/buttoncolor.png')
             }
         }
     }
