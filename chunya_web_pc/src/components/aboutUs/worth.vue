@@ -2,7 +2,7 @@
     <div class="worth">
         <div class="icon-box">企业核心价值观</div>
         <div class="content">
-            <img src="../../assets/img/about_worthPoster.jpg" alt="">
+            <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/about_worthPoster.jpg" alt="">
         </div>
     </div>
 </template>

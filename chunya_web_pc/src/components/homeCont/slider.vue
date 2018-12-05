@@ -1,67 +1,75 @@
 <template>
-    <div class="slider">
-        <div class="desc">
-            <img src="../../assets/img/addWhite.png" alt="">
-            <p>始于自然，缘于发生</p>
-            <p>Come from the nature, Change from the unknown</p>
+    <div class="swiper-container" >
+        <div class="swiper-wrapper">
+            <!-- <div class="slider-item" v-for=" item in posterList" :key="item.id">
+                <img class="slider-pic" :src="item.image_url" alt="">
+            </div> -->
+            <div v-for="item in posterList" class="swiper-slide swiper-item" style="background:#f3f3f3">
+                <img :src="item.image_url" alt="">
+            </div>
         </div>
-        <div class="slider-wrap" v-if="dataGetSuccess">
-            <slider :loop="loop" :autoPlay="autoPlay" v-if="dataGetSuccess">
-                    <div class="slider-item" v-for=" item in posterList" :key="item.id">
-                        <img class="slider-pic" :src="item.image_url" alt="">
-                    </div>
-            </slider>
-        </div>
+        <div class="swiper-button-prev swiper-button-bgImg1" ></div>
+        <div class="swiper-button-next swiper-button-bgImg2"></div>
     </div>
 </template>
 <script>
-import slider from './sliderSub/slider'
 import {spreadList} from '../../sendRequest/sendRequest'
+import Swiper from 'swiper'
+import Vue from 'vue'
 export default {
     data() {
         return {
-            loop:true,
-            autoPlay:true,
-            dataGetSuccess:false,
             posterList:[]
         }
     },
-    created() {
+    mounted() {
         spreadList().then( res => {
             let data = res.data
            if(data.errno === 0) {
               this.posterList = data.data.adList
-              this.dataGetSuccess = true
+              console.log(this.posterList)
+                Vue.nextTick(() => {
+                    var mySwiper = new Swiper('.swiper-container', {
+                        autoplay:{
+                            disableOnInteraction: false
+                        },
+                        loop:true,
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                    })
+                })
            }else {
                alert(data.msg)
            }
         })
-    },
-    components: {
-        slider
     }
 }
 </script>
 <style lang="less" scoped>
-.slider {
+.swiper-container {
     height: 700px;
-    background:#ddd;
     position: relative;
-    max-height: 1920px;
+    max-width: 1920px;
     overflow: hidden;
-    .slider-wrap {
-        width: 100%;
+    .swiper-item {
+        position: relative;
         overflow: hidden;
-        height: 700px;
-            .slider-item {
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                display: inline-block;
-                img {
-                    height: 100%;
-                }
-            }
+        img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%)
+        }
+    }
+    .swiper-button-bgImg1 {
+        background-image: url('../../assets/img/leftClick.png') !important;
+        left: 25px;
+    }
+    .swiper-button-bgImg2 {
+        background-image: url('../../assets/img/rightClick.png') !important;
+        right: 25px;
     }
     .desc {
         position: absolute;

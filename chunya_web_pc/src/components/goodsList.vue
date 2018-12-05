@@ -1,43 +1,41 @@
 <template>
-    <div class="goods-list" v-html="this.goodsList.contentDesc">
+         <div class="goods-list" v-html="contentDesc">
     </div>
+   
 </template>
 <script>
-import {previewGoodsList} from '../sendRequest/sendRequest'
-import Vue from 'vue'
+import {mapState,mapMutations} from 'vuex'
+import {getHash} from '../getHash'
 export default {
+    computed: {
+        ...mapState(['goodActiveId','goodsList'])
+        
+    },
     data() {
         return {
-            goodsList:[],
-            contentDesc: {},
-            showFlag: false,
-            contDescShowFlag:false
+            contentDesc: ''
         }
     },
     created() {
-        previewGoodsList().then(res => {
-            if(res.data.errno === 0) {
-                this.goodsList = res.data.data
-                Vue.nextTick(() => {
-                    this.domInit()
-                })
-            }else {
-                alert(res.data.msg)
-            }
-        })
+        this.navActiveRefresh(location.hash)
+        if(this.goodsList.length !== 0) {
+            this.goodsListFilter(getHash())
+        }
     },
     methods: {
-        domInit() {
-            // let contDesc = document.getElementsByClassName('contentDesc')
-            this.goodsList.forEach( (item,index) => {
-                // contDesc[index].innerHTML = item.contentDesc
+        ...mapMutations(['navActiveRefresh']),
+        goodsListFilter(id) {
+            this.goodsList.forEach(item => {
+                item.id === id ? this.contentDesc = item.contentDesc : ''
             })
-            this.goodsList = this.goodsList[0]
+        }
+    },
+    watch: {
+        goodActiveId(e) {
+            this.goodsListFilter(e)
         },
-        getContDesc(itemObj) {
-            this.contentDesc = itemObj
-            this.contDescShowFlag = true
-            this.showFlag = true
+        goodsList() {
+            this.goodsListFilter(getHash())
         }
     }
 }

@@ -8,7 +8,7 @@
             <div class="img-text">
                 <div class="up">
                     <div class="left-pic">
-                        <img src="../../assets/img/cup.jpg" alt="">
+                        <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/cup.jpg" alt="">
                     </div>
                     <div class="desc">
                         <div class="box">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="bottom">
-                    <img src="../../assets/img/rice1.jpg" alt="">
+                    <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/rice1.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="bottom">
                     <div class="img">
-                        <img src="../../assets/img/rice2.jpg" alt="">
+                        <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/rice2.jpg" alt="">
                     </div>
                     <div class="text">
                         <p class="chinese">五谷杂粮粉，朴素自然，却营养均衡，每天吃一碗，既浓缩了时间，又吸收了精华。</p>
@@ -83,17 +83,17 @@
                 </div>
             </div>
             <div class="right-pic" :style="{'width': desc2rightPicWidth}">
-                <img src="../../assets/img/girl.jpg" alt="">
+                <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/girl.jpg" alt="">
             </div>
         </div>
         <div class="poster">
-            <img src="../../assets/img/present.jpg" alt="">
+            <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/present.jpg" alt="">
         </div>
         <div class="desc3">
             <div class="background"></div>
             <p class="more">——&nbsp;&nbsp;&nbsp; more&nbsp;&nbsp; ></p>
             <div class="left-box">
-                <img src="../../assets/img/heart.jpg" alt="">
+                <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/heart.jpg" alt="">
             </div>
             <div class="right-box">
                 <div class="text">
@@ -109,7 +109,7 @@
                     <img class="add" src="../../assets/img/add.png">
                 </div>
                 <div class="img-knowMore">
-                    <img src="../../assets/img/book.jpg" alt="">
+                    <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/book.jpg" alt="">
                     <img src="../../assets/img/knowMore.png" @click="toGoodList">
                 </div>
             </div>

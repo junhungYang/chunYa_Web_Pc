@@ -7,6 +7,8 @@ import companyNews from "@/components/companyNews"
 import about from "@/components/about"
 import shoppingCenter from '@/components/shoppingCenter'
 import contact from "@/components/contact";
+import newsDetail from "@/components/companyNews/newsDetail"
+import newsindex from "@/components/companyNews/newsindex"
 
 Vue.use(Router)
 
@@ -27,7 +29,11 @@ export default new Router({
     },
     {
       path: "/companyNews",
-      component: companyNews
+      component: companyNews,
+    },
+    {
+      path:'/newsdetail',
+      component:newsDetail
     },
     // {
     //   path: "/memberCenter",
@@ -44,6 +50,9 @@ export default new Router({
     {
       path: "/contact",
       component: contact
+    },{
+      path: "/newsindex",
+      component:newsindex
     }
   ]
 });

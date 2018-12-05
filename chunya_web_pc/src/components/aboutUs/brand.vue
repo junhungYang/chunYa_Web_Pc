@@ -6,7 +6,7 @@
         </header>
         <div class="content">
             <div class="row1">
-                <img src="../../assets/img/about_brandPoster.jpg" alt="">
+                <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/about_brandPoster.jpg" alt="">
                 <div class="row1-cont">
                     <p>深圳市春芽健康科技有限公司</p>
                     <p>（以下简称春芽健康科技）成立于2018年，是一家集生产、企划、销售、服务于一体的现代化健康科技企业。</p>

@@ -1,10 +1,10 @@
 <template>
     <div class="health">
-        <div class="health-getmore">新闻快讯 ></div>
+        <div class="health-getmore"  @click="gonewsindex(3)">健康分享 ></div>
             <div class="health-box">
             <img :src="healthimg" :class={fade:imgupdate}>
         <ul>
-            <li v-for="item,index in healthData" @click="showingHealthDesc(item)" :key="index" @mouseover="changepic(index,item.coverPicUrl)">
+            <li v-for="item,index in healthData" @click="showingHealthDesc(item.id)" :key="index" @mouseover="changepic(index,item.coverPicUrl)">
                 <p>{{item.name}}</p><span>></span>
                <!--  <div class="img">
                     <img :src="item.coverPicUrl" alt="">
@@ -73,12 +73,16 @@ export default {
                 this.getHealthPage()
             }
         },
-        showingHealthDesc(item) {
-            this.contDescFlagRefresh({mod:'health',flag:true})
-            this.healthShowContent = item
+        showingHealthDesc(id) {
+            this.$store.commit('changeNewsDetailid',id);
+             this.$router.push({path:'/newsdetail',query:{id:id}})
+        },
+        gonewsindex(index){
+            this.$router.push({path:'/newsindex',query:{newstype:index}})
         },
         changepic(index,url){
             // console.log(index,url);
+            if(this.healthimg == url){return}else{
             this.healthimg = url;
             this.imgupdate = false;
             setTimeout(() => {
@@ -86,17 +90,20 @@ export default {
             },200)
         }
     }
+    }
 }
 </script>
 
 <style lang="less" scoped>
 .health {
+    width: 1200px;
+    margin: 0 auto;
     .health-getmore{
         width: 345px;
         height: 92px;
         line-height: 92px;
         position: relative;
-        left: calc(100% - 462px);
+        left: calc(100% - 345px);
         background-image: url('../../assets/img/about_iconBox.jpg');
         text-align: center;
         background-position: center;
@@ -104,9 +111,10 @@ export default {
         margin-top: 150px;
         font-size: 20px;
         font-weight: 600;
+        cursor: pointer;
     }
     .health-box{
-        width: 1920px;
+        width: 100%;
         margin-top: 110px;
         display: box;
         display:-webkit-box;
@@ -117,8 +125,8 @@ export default {
         -moz-box-pack: start;
         -o-box-pack: start;
         img{
-            width:960px;
-            height:460px;
+            width:497px;
+            height:331px;
             opacity: 0; 
         }
         .fade{
@@ -126,12 +134,12 @@ export default {
             transition: .5s linear;
         }
     ul {
-        width: 733px;
-        margin-left: 110px;
+        width: 608px;
+        margin-left: 91px;
         li {
            width: 100%;
             overflow: hidden;
-            height: 83px;
+            height: 74px;
             display: flex;
             border-bottom:1px solid #B2B2B2;
             cursor: pointer;
@@ -146,7 +154,7 @@ export default {
             }
              p{
                 width: 527px;
-                line-height: 131px;
+                line-height: 103px;
                 color:#858585;
                 font-size: 18px;
                 overflow: hidden;
@@ -164,7 +172,7 @@ export default {
                 line-height: 20px;
                 border: 1px solid #858585;
                 margin-left: 180px;
-                margin-top: 50px;
+                margin-top: 41px;
             }
             .text {
                 padding-left: 25px;
@@ -204,6 +212,15 @@ export default {
         li:hover{
             p{
                 color: black;
+            }
+        }
+        li:nth-child(1){
+            height:32px;
+            p{
+                line-height: 22px;
+            }
+            span{
+                margin-top: 0px;
             }
         }
     }

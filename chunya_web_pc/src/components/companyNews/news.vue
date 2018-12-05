@@ -1,10 +1,10 @@
 <template>
     <div class="news-box">
-        <div class="news-getmore">新闻快讯 ></div>
+        <div class="news-getmore" @click="gonewsindex(1)">新闻快讯 ></div>
             <div class="news-box-1">
             <img :src="newsimg" :class={fade:imgupdate}>
         <ul>
-            <li v-for="item,index in newsData" @click="showingNewsDesc(item)" @mouseover="changepic(index,item.coverPicUrl)" :key="index">
+            <li v-for="item,index in newsData" @click="showingNewsDesc(item.id)" @mouseover="changepic(index,item.coverPicUrl)" :key="index">
                 <p>{{item.name}}</p><span v-text="getTime(item.addTime)"></span>
               <!--   <div class="news-img">
                     <img :src="item.coverPicUrl" alt="">
@@ -86,12 +86,17 @@ export default {
                 this.getNewsPage()
             }
         },
-        showingNewsDesc(item) {
-            this.contDescFlagRefresh({mod:'news',flag:true})
-            this.newsShowContent = item
+        showingNewsDesc(id) {
+            // console.log(id);
+            this.$store.commit('changeNewsDetailid',id);
+             this.$router.push({path:'/newsdetail',query:{id:id}})
+        },
+        gonewsindex(index){
+            this.$router.push({path:'/newsindex',query:{newstype:index}})
         },
         changepic(index,url){
             // console.log(index,url);
+            if(this.newsimg == url){ return }else{
             this.newsimg = url;
             this.imgupdate = false;
             setTimeout(() => {
@@ -99,17 +104,20 @@ export default {
             },200)
         }
     }
+    }
 }
 </script>
 
 <style lang="less" scoped>
 .news-box {
+        width:1200px;
+        margin: 0 auto;
     .news-getmore{
         width: 345px;
         height: 92px;
         line-height: 92px;
         position: relative;
-        left: calc(100% - 462px);
+        left: calc(100% - 345px);
         background-image: url('../../assets/img/about_iconBox.jpg');
         text-align: center;
         background-position: center;
@@ -117,9 +125,10 @@ export default {
         margin-top: 150px;
         font-size: 20px;
         font-weight: 600;
+        cursor: pointer;
     }
     .news-box-1{
-        width: 1920px;
+        width: 100%;
         margin-top: 110px;
         display: box;
         display:-webkit-box;
@@ -130,8 +139,8 @@ export default {
         -moz-box-pack: start;
         -o-box-pack: start;
         img{
-            width:960px;
-            height:545px;
+            width:452px;
+            height:290px;
             opacity: 0;    
         }
         .fade{
@@ -141,12 +150,12 @@ export default {
 
     }
     ul {
-        width: 733px;
-        margin-left: 110px;
+        width: 642px;
+        margin-left: 104px;
         li {
             width: 100%;
             overflow: hidden;
-            height: 83px;
+            height: 74px;
             display: flex;
             border-bottom:1px solid #B2B2B2;
             cursor: pointer;
@@ -154,8 +163,8 @@ export default {
                 flex: 1;
             }
             p{
-                width: 527px;
-                line-height: 131px;
+                width: 436px;
+                line-height: 112px;
                 color:#858585;
                 font-size: 18px;
                 overflow: hidden;
@@ -166,7 +175,7 @@ export default {
                 width:104px;
                 height: 32px;
                 border: 1px solid #858585;
-                margin-top: 36px;
+                margin-top: 34px;
                 margin-left: 100px;
                 text-align:center;
                 line-height: 32px;
@@ -215,9 +224,9 @@ export default {
             }
         }
         li:nth-child(1){
-            height:49px;
+            height:40px;
             p{
-                line-height: 66px;
+                line-height: 45px;
             }
             span{
                 margin-top: 0px;

@@ -5,18 +5,18 @@
                 <div class="brand">
                     <img src="../assets/img/logoWhite.png" alt="">
                 </div>
-                <div class="phone-num">0775-2377 5137</div>
+                <div class="phone-num">400-666-3819</div>
             </header>
             <div class="content">
                 <div class="text">
                     <div class="desc">
                         <p>公司地址：深圳市龙华区汇海广场A座908室</p>
-                        <p>联系电话：0755-2377 5137</p>
+                        <p>联系电话：400-666-3819</p>
                         <p>电子邮箱：chunya0820@sina.com</p>
                     </div>
                     <div class="Copyright">
                         <p>Copyright © 2018 All Rights Reserved / 版权所有：深圳市春芽健康科技有限公司</p>
-                        <p>ICP备案：粤ICP备18113252号-1</p>
+                        <p>ICP备案：<a href="http://www.miibeian.gov.cn" target="blank">粤ICP备18113252号-1</a></p>
                     </div>
                 </div>
                 <div class="share">
@@ -87,6 +87,12 @@ export default {
                     p {
                         font-size: 15px;
                         line-height: 18px;
+                        a{
+                            color: rgba(235, 237, 238, 0.3);
+                        }
+                        a:hover{
+                            color: #FFBB00;
+                        }
                     }
                 }
             }

@@ -2,7 +2,7 @@
 <template>
     <div class="advertise">
         <div class="poster">
-            <img src="../assets/img/advertise_poster.jpg" alt="">
+            <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/advertise_poster.jpg" alt="">
         </div>
         <div class="content">
             <ul class="nav-list">
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="map">
-                        <img src="../assets/img/advertise_map.jpg" alt="">
+                        <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/advertise_map.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -131,15 +131,16 @@ export default {
         return {
             activePage: 'adverShop',
             advertiseData: [],
-            activeIndex:0
+            activeIndex:0,
+            activeData:''
         }
     },
     computed: {
-        activeData() {
-            if(this.advertiseData.length !== 0) {
-                return this.advertiseData[this.activeIndex]
-            }
-        }
+        // activeData() {
+        //     if(this.advertiseData.length !== 0) {
+        //         return this.advertiseData[this.activeIndex]
+        //     }
+        // }
     },
     created() {
         this.sendRequest()
@@ -147,14 +148,17 @@ export default {
     methods: {
         changePage(index) {
             this.activeIndex = index
+            this.activeData = this.advertiseData[this.activeIndex]
         },
         sendRequest() {
             recruitmentDetail()
             .then(res => {
-                console.log(res)
                 if(res.data.errno === 0) {
                     this.advertiseData = res.data.data
-                    console.log(res.data.data)
+                    if(this.advertiseData.length != 0){
+                    this.activeData = this.advertiseData[0];
+                    }
+                    // console.log(res.data.data)
                 }
             })
         },

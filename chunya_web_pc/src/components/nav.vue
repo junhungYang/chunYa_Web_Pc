@@ -2,7 +2,7 @@
     <div class="nav">
         <div class="line-bg"></div>
         <div class="wrap">
-            <ul>
+            <ul class="father-list">
                 <li>
                     <router-link :class="navActive === '#/' ? 'routeAct' : ''" tag="span" to="/">首页</router-link>
                     <div v-show="navActive === '#/'" class="active"></div>
@@ -12,20 +12,11 @@
                     <div v-show="navActive === '#/companyNews'" class="active"></div>
                 </li>
                 <li>
-                    产品预览
+                    <span>产品预览</span>
                     <div v-show="navActive === '#/goodsList'" class="active"></div>
-                    <ul>
-                        <li><router-link :class="navActive === '#/goodsList' ? 'routeAct' : ''" tag="span" to="/goodsList">善缘米</router-link></li>
+                    <ul class="item-list">
+                        <li v-for="item in goodsList" @click="getId(item.id)"><router-link :class="navActive === '#/goodsList' ? 'routeAct' : ''" tag="span" :to="`/goodsList?id=${item.id}`">{{item.name}}</router-link></li>
                     </ul>
-                </li>
-                <!-- <li>
-                    <router-link tag="span" to="/memberCenter">会员中心</router-link>
-                    <div v-show="navActive === '#/memberCenter'" class="active"></div>
-                </li> -->
-                <li @click="shoppingCenter">
-                    <!-- <router-link :class="navActive === '#/shoppingCenter' ? 'routeAct' : ''" tag="span" to="/shoppingCenter">在线商城</router-link> -->
-                    <span>在线商城</span>
-                    <div class="xcximg"></div>
                 </li>
                 <li>
                     <router-link :class="navActive === '#/about' ? 'routeAct' : ''" tag="span" to="/about">关于我们</router-link>
@@ -41,22 +32,21 @@
 </template>
 <script>
 import { mapState,mapMutations } from 'vuex'
+import {previewGoodsList} from '../sendRequest/sendRequest'
 export default {
     computed: {
-        ...mapState(['navActive'])
+        ...mapState(['navActive','goodsList'])
     },
     created() {
-        console.log(location.hash)
-        this.navActiveRefresh(location.hash)
+        this.navActiveRefresh(window.location.hash)
+         previewGoodsList().then(res => {
+             this.refreshGoodsList(res.data.data)
+        })
     },
     methods: {
-        ...mapMutations(['navActiveRefresh']),
-        shoppingCenter() {
-            return 
-            // location.href = 'http://www.chunyajkkj.com'
-        }
-    }
+        ...mapMutations(['refreshGoodsList','getId','navActiveRefresh']),
 
+    }
 }
 </script>
 
@@ -73,7 +63,6 @@ export default {
         z-index:100;
         ul {
             position: absolute;
-            height: 70px;
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
@@ -95,31 +84,22 @@ export default {
                     height: 2px;
                     background:rgb(47,39,37)
                 }
-                .xcximg{
-                    position: absolute;
-                    width: 200px;
-                    height: 200px;
-                    top: 68px;
-                    left: -61px;
-                    background-image: url('../assets/img/xiaochengxu.jpg');
-                    background-repeat: no-repeat;
-                    background-position: center center;
-                    background-size:90%;
-                    background-color: white;
-                    display:none;
-                }
-                ul{
+                .item-list{
                     display: none;
                     top: 68px;
                     z-index: 99999;
+                    background: #f3f3f3;
                     li{
-                        background-color: white;
                         width: 123px;
                         margin: 0px;
                         text-align: center;
                         height: 34px;
                         line-height: 34px;
                         display: block;
+                        border-bottom: 1px solid #aaa;
+                    }
+                    li:last-of-type {
+                        border: 0;
                     }
                     li:hover{
                         background-image: url('../assets/img/buttoncolor.png');
@@ -133,13 +113,8 @@ export default {
                 }
             }
             li:nth-child(3):hover{
-                ul{
+                .item-list{
                     display: block;
-                }
-            }
-            li:nth-child(4):hover{
-                .xcximg{
-                    display:block;
                 }
             }
         }

@@ -1,7 +1,7 @@
 <template>
     <div class="company-news">
         <div class="header">
-            <img src="../assets/img/compynew1.png" >
+            <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/compynew1.jpg" >
             <!-- <div class="menu-list"> -->
                 <!-- <ul>
                     <li :class="activePage === 'news' ? 'active' : 'unActive'" 
@@ -95,7 +95,7 @@ export default {
 .company-news {
     .header {
         width: 100%;
-        max-width: 1920px;
+       min-width: 1200px;
         img{
             width: 100%;  
         }
@@ -163,7 +163,6 @@ export default {
         }
     }
     .content {
-        width: 1920px;
         margin: 0 auto;
         margin-bottom: 100px;
         

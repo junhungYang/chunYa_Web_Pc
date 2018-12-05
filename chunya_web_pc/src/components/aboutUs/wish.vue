@@ -9,7 +9,7 @@
             <p>以种子文化与力量践行公益，努力在经济、社会、人文等领域创造更多价值</p>
         </div>
         <div class="poster">
-            <img src="../../assets/img/about_wishPoster.jpg" alt="">
+            <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/about_wishPoster.jpg" alt="">
         </div>
     </div>
 </template>

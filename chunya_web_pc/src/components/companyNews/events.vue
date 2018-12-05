@@ -3,10 +3,11 @@
         <div class="events-img">
             <img :src="eventsimg" :class={fade:imgupdate}>
         </div>
+        <div class="events-box">
         <div class="events-content">
-            <div class="events-getmore">活动资讯 ></div>
+            <div class="events-getmore"  @click="gonewsindex(2)">活动资讯 ></div>
         <ul>
-            <li v-for="item,index in eventsData" @click="showingEventsDesc(item)" @mouseover="changepic(index,item.coverPicUrl)">
+            <li v-for="item,index in eventsData" @click="showingEventsDesc(item.id)" @mouseover="changepic(index,item.coverPicUrl)">
                 <p>{{item.name}}</p><span>></span>
                <!--  <div class="img">
                     <img :src="item.coverPicUrl" alt="">
@@ -22,6 +23,7 @@
             </li>
         </ul>
     </div>
+</div>
     </div>
 </template>
 <script>
@@ -75,12 +77,16 @@ export default {
                 this.getEventsPage()
             }
         },
-        showingEventsDesc(item) {
-            this.contDescFlagRefresh({mod:'events',flag:true})
-            this.eventsShowContent = item
+        showingEventsDesc(id) {
+            this.$store.commit('changeNewsDetailid',id);
+             this.$router.push({path:'/newsdetail',query:{id:id}})
+        },
+        gonewsindex(index){
+            this.$router.push({path:'/newsindex',query:{newstype:index}})
         },
         changepic(index,url){
             // console.log(index,url);
+            if(this.eventsimg == url){ return}else{
             this.eventsimg = url;
             this.imgupdate = false;
             setTimeout(() => {
@@ -88,13 +94,14 @@ export default {
             },200)
         }
     }
+    }
 }
 </script>
 
 <style lang="less" scoped>
 .events {
     margin-top: 148px;
-    width: 1920px;
+    width: 100%;
     position:relative;
     .events-img{
         width:100%;
@@ -109,12 +116,17 @@ export default {
             transition: .5s linear;
         }
     }
-    .events-content{
+    .events-box{
+        width:1200px;
+        margin: 0 auto;
         position: absolute;
-        top: 68px;
-        left: 0px;
+        top: 0px;
+        left: 50%;
+        margin-left: -600px;
+        margin-top: 103px;
+    .events-content{
         width: 963px;
-        height: 847px;
+        height: 780px;
         background:rgba(255,255,255,.8);
         .events-getmore{
             width: 345px;
@@ -124,28 +136,32 @@ export default {
             text-align: center;
             background-position: center;
             background-repeat: no-repeat;
-            margin-top: 83px;
-            margin-left:497px;
+            position: relative;
+            top: 83px;
+            left: 103px;
             font-size: 20px;
             font-weight: 600;
+            cursor: pointer;
         }
      ul {
         display: flex;
         flex-wrap: wrap;
         width: 733px;
         margin: 0 auto;
-        margin-top: 100px;
+        position: relative;
+        top: 163px;
         li {
             width: 100%;
-            height: 83px;
+            height: 74px;
             border-bottom:1px solid #B2B2B2; 
             display: flex;
+            cursor: pointer;
             .img,.text {
                 flex: 1;
             }
              p{
                 width: 527px;
-                line-height: 131px;
+                line-height: 103px;
                 color:#858585;
                 font-size: 18px;
                 overflow: hidden;
@@ -163,7 +179,7 @@ export default {
                 line-height: 20px;
                 border: 1px solid #858585;
                 margin-left: 180px;
-                margin-top: 50px;
+                margin-top: 41px;
             }
             .img {
                 overflow: hidden;
@@ -212,6 +228,7 @@ export default {
             }
         }
     }
+}
 }
     .btn {
         width: 200px;

@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="poster">
-                <img src="../../assets/img/about_sloganPoster.jpg" alt="">
+                <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/about_sloganPoster.jpg" alt="">
             </div>
         </div>
     </div>

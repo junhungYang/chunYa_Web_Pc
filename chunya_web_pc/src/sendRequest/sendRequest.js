@@ -42,9 +42,9 @@ function videoDetail() {
 }
 
 //公司动态 / 资讯详情
-function newsDetail() {
+function newsDetail(data) {
     return axios.post("/api/official/newsDetail", qs.stringify({
-        id: 3
+        id: data
     }));
 }
 
@@ -58,5 +58,6 @@ export {
     commonArticle,
     previewGoodsList,
     newsList,
-    recruitmentDetail
+    recruitmentDetail,
+    newsDetail
 }
