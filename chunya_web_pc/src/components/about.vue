@@ -1,7 +1,7 @@
 <template>
     <div class="aboutUs">
         <div class="poster">
-            <img src="../assets/img/about_poster.jpg" alt="">
+            <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/aboutUs_poster.jpg" alt="">
         </div>
         <about-brand></about-brand>
         <about-slogan></about-slogan>

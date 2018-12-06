@@ -53,11 +53,19 @@ function recruitmentDetail(){
     return axios.post("/api/official/recruitmentList");
 }
 
-export {
-    spreadList,
-    commonArticle,
-    previewGoodsList,
-    newsList,
-    recruitmentDetail,
-    newsDetail
+// 官网详情
+function homeDesc() {
+    return axios.post('/api/official/commonArticle',qs.stringify({
+        id: 9
+    }))
 }
+
+export {
+  spreadList,
+  commonArticle,
+  previewGoodsList,
+  newsList,
+  recruitmentDetail,
+  newsDetail,
+  homeDesc
+};

@@ -1,7 +1,7 @@
 <template>
     <div class="company-news">
         <div class="header">
-            <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/compynew1.jpg" >
+            <img src="https://chunya-static.oss-cn-shenzhen.aliyuncs.com/upload/official/companynew1.jpg" >
             <!-- <div class="menu-list"> -->
                 <!-- <ul>
                     <li :class="activePage === 'news' ? 'active' : 'unActive'" 

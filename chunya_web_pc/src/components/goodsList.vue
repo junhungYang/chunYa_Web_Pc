@@ -17,6 +17,7 @@ export default {
         }
     },
     created() {
+        window.scrollTo(0,0)
         this.navActiveRefresh(location.hash)
         if(this.goodsList.length !== 0) {
             this.goodsListFilter(getHash())
